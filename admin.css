@@ -1,0 +1,233 @@
+/* Modern Minimalist Styling */
+:root {
+    --admin-accent-color: var(--bs-danger);
+    --sidebar-width: 260px;
+}
+
+body {
+    background-color: #f8f9fa;
+    display: flex;
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background-color: #ffffff;
+    border-right: 1px solid #dee2e6;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(0,0,0,0.03);
+}
+
+.sidebar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--admin-accent-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-brand .bi {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link {
+    color: #343a40;
+    font-size: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 0.25rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar .nav-link .bi {
+    margin-right: 14px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--admin-accent-color);
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.sidebar .nav-link:not(.active):hover {
+    background-color: #f1f3f5;
+    color: #000;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid #f1f3f5;
+    padding-top: 1rem;
+}
+
+/* --- Main Content Styling --- */
+.content {
+    margin-left: var(--sidebar-width);
+    padding: 1.5rem 2.5rem;
+    width: calc(100% - var(--sidebar-width));
+}
+
+.top-navbar {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.03);
+}
+
+/* --- SPA Page Routing --- */
+.page-content {
+    display: none; /* Sembunyikan semua halaman by default */
+}
+.page-content.active {
+    display: block; /* Tampilkan hanya halaman yang aktif */
+}
+
+/* --- Styling Tabel --- */
+.card-table {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.table {
+    vertical-align: middle;
+    margin-bottom: 0;
+}
+
+.table thead th {
+    font-weight: 600;
+    color: #495057;
+    background-color: #f8f9fa;
+    border-bottom-width: 1px;
+    white-space: nowrap;
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.action-buttons .btn {
+    margin: 0 2px;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 0.4em 0.6em;
+    font-weight: 500;
+}
+
+/* --- Styling Modal --- */
+.payment-proof-preview {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+}
+
+.status-checklist .form-check {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s;
+}
+
+.status-checklist .form-check:hover {
+    background-color: #f8f9fa;
+}
+
+.status-checklist .form-check-input:checked {
+    background-color: var(--admin-accent-color);
+    border-color: var(--admin-accent-color);
+}
+
+.status-checklist .form-check-input:disabled + .form-check-label {
+    color: #adb5bd;
+    text-decoration: line-through;
+}
+
+.status-checklist .form-check-label.fw-bold {
+    color: var(--bs-dark);
+}
+
+/* --- Styling Halaman Laporan (Grafik) --- */
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 250px;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    padding: 1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.chart-bar {
+    width: 10%;
+    background-color: #f1f3f5;
+    border-radius: 0.25rem 0.25rem 0 0;
+    text-align: center;
+    position: relative;
+    transition: height 0.3s ease-out;
+}
+
+.chart-bar .bar-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--admin-accent-color);
+    padding-top: 5px;
+}
+
+.chart-bar .bar-label {
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    text-align: center;
+    color: #6c757d;
+}
+
+.chart-bar .bar-fill {
+    background-color: var(--admin-accent-color);
+    opacity: 0.7;
+    width: 100%;
+    border-radius: 0.25rem 0.25rem 0 0;
+    transition: height 0.5s ease-out;
+}
+.chart-bar .bar-fill:hover {
+    opacity: 1;
+}
+
+/* --- Styling Notifikasi --- */
+#notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#notification-list .dropdown-item {
+    white-space: normal; /* Izinkan text wrap */
+    font-size: 0.9rem;
+}
+
+/* --- Styling Dashboard Card --- */
+#dashboard-stats-cards .card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+#dashboard-stats-cards .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1);
+}
