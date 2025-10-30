@@ -1,0 +1,37 @@
+/* Latar belakang abu-abu muda seperti admin */
+body {
+    background-color: #f8f9fa;
+}
+
+/* Navbar utama menggunakan warna merah admin */
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Sembunyikan semua halaman by default */
+.page-section {
+    display: none;
+}
+
+/* Tampilkan dashboard by default */
+#dashboard-page {
+    display: block;
+}
+
+/* Styling Status Badge agar SAMA DENGAN ADMIN */
+.status-proses {
+    background-color: #198754; /* Hijau (Proses Pencucian) */
+    color: white;
+}
+.status-menunggu {
+    background-color: #ffc107; /* Kuning (Menunggu Pembayaran) */
+    color: #000;
+}
+.status-selesai {
+    background-color: #212529; /* Hitam (Selesai Dicuci) */
+    color: white;
+}
+.status-jemput {
+    background-color: #0d6efd; /* Biru (Status baru: Menunggu Jemput) */
+    color: white;
+}

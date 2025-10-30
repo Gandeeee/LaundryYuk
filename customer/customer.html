@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaundryKu - Dashboard Pelanggan</title>
+    
+    <!-- 1. Bootstrap CSS (dari CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- 2. Custom CSS (memanggil file style.css) -->
+    <link href="customer.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ======================= NAVBAR (Customer) ======================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">LaundryKu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!-- data-page digunakan oleh jQuery untuk navigasi -->
+                        <a class="nav-link active" href="#" data-page="dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="order">Buat Pesanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="history">Riwayat</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    Hai, Krisna
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================= KONTEN UTAMA ======================= -->
+    <div class="container mt-4">
+
+        <!-- ================= HALAMAN 1: DASHBOARD ================= -->
+        <div id="dashboard-page" class="page-section">
+            <h1 class="h3 mb-3">Dashboard Saya</h1>
+
+            <!-- Kartu Ringkasan (Seperti Admin) -->
+            <div class="row mb-4">
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body d-flex align-items-center">
+                            <!-- Kamu bisa tambahkan ikon Bootstrap di sini jika mau -->
+                            <div class="ms-3">
+                                <h5 class="card-title mb-0">2</h5>
+                                <p class="card-text text-muted mb-0">Pesanan Aktif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body d-flex align-items-center">
+                             <!-- Kamu bisa tambahkan ikon Bootstrap di sini jika mau -->
+                            <div class="ms-3">
+                                <h5 class="card-title mb-0">1</h5>
+                                <p class="card-text text-muted mb-0">Pesanan Diproses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Call to Action -->
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-danger text-white shadow-sm border-0 h-100">
+                        <div class="card-body text-center d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Pakaian Kotor Menumpuk?</h5>
+                            <button class="btn btn-light text-danger fw-bold mt-2" id="btnPesanSekarang">
+                                Pesan Laundry Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ringkasan Order (Seperti Admin) -->
+            <h2 class="h4 mb-3">Ringkasan Orderku</h2>
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Tanggal</th>
+                                <th>Status Terkini</th>
+                                <th>Total (Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">#LD-3</td>
+                                <td>27/10/2025</td>
+                                <td>
+                                    <span class="badge status-proses">Proses Pencucian</span>
+                                </td>
+                                <td>Rp 70.000</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">#LD-2</td>
+                                <td>26/10/2025</td>
+                                <td>
+                                    <span class="badge status-menunggu">Menunggu Pembayaran</span>
+                                </td>
+                                <td>Rp 55.000</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">#LD-1</td>
+                                <td>25/10/2025</td>
+                                <td>
+                                    <span class="badge status-selesai">Selesai Dicuci</span>
+                                </td>
+                                <td>Rp 40.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 2: BUAT PESANAN ================= -->
+        <div id="order-page" class="page-section">
+            <h1 class="h3 mb-3">Buat Pesanan Baru</h1>
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <form>
+                        <div class="mb-3">
+                            <label for="service" class="form-label">Pilih Layanan</label>
+                            <select class="form-select" id="service">
+                                <option>Cuci Kiloan (Reguler 3 Hari)</option>
+                                <option>Cuci Kiloan (Express 1 Hari)</option>
+                                <option>Cuci Satuan (Jas)</option>
+                                <option>Cuci Satuan (Karpet)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Alamat Penjemputan</label>
+                            <textarea class="form-control" id="address" rows="4" placeholder="Masukkan alamat lengkap..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Nomor Telepon (WhatsApp)</label>
+                            <input type="text" class="form-control" id="phone" placeholder="08xxxxxxxxxx">
+                        </div>
+                        <div class="d-flex justify-content-end pt-3">
+                            <button type="button" class="btn btn-light me-2 nav-link" data-page="dashboard">Batal</button>
+                            <button type="submit" class="btn btn-danger">Kirim Pesanan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 3: RIWAYAT PESANAN ================= -->
+        <div id="history-page" class="page-section">
+            <h1 class="h3 mb-3">Riwayat Pesananku</h1>
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Tanggal</th>
+                                <th>Status Terkini</th>
+                                <th>Total (Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">#LD-4</td>
+                                <td>28/10/2025</td>
+                                <td><span class="badge status-jemput">Menunggu Penjemputan</span></td>
+                                <td>Rp 35.000</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">#LD-3</td>
+                                <td>27/10/2025</td>
+                                <td><span class="badge status-proses">Proses Pencucian</span></td>
+                                <td>Rp 70.000</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">#LD-2</td>
+                                <td>26/10/2025</td>
+                                <td><span class="badge status-menunggu">Menunggu Pembayaran</span></td>
+                                <td>Rp 55.000</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">#LD-1</td>
+                                <td>25/10/2025</td>
+                                <td><span class="badge status-selesai">Selesai Dicuci</span></td>
+                                <td>Rp 40.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 3. jQuery (Harus ada SEBELUM bootstrap.bundle.js) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- 4. Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 5. JavaScript Kustom (memanggil file app.js) -->
+    <script src="customer.js"></script>
+</body>
+</html>
