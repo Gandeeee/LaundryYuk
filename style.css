@@ -1,0 +1,72 @@
+/* style.css (Untuk Halaman Landing Page) */
+
+/* Menggunakan font yang bersih dan modern */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Kustomisasi warna tema merah agar konsisten */
+:root {
+    --brand-red: #D93444; /* Warna merah dari tema admin */
+    --brand-red-dark: #c53030;
+}
+
+/* Mengganti warna default Bootstrap 'danger' agar sesuai tema */
+.btn-danger {
+    background-color: var(--brand-red);
+    border-color: var(--brand-red);
+}
+
+.btn-danger:hover {
+    background-color: var(--brand-red-dark);
+    border-color: var(--brand-red-dark);
+}
+
+.bg-danger {
+    background-color: var(--brand-red) !important;
+}
+
+.text-danger {
+    color: var(--brand-red) !important;
+}
+
+/* Styling untuk Hero Section */
+.hero-section {
+    padding: 6rem 0;
+    background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), url('https://placehold.co/1920x1080/f1f1f1/ccc?text=Mesin+Cuci') no-repeat center center;
+    background-size: cover;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    color: #555;
+}
+
+/* Styling untuk section 'Layanan Kami' */
+.section-title {
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    color: var(--brand-red);
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+

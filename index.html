@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaundryYuk - Layanan Laundry Cepat & Bersih</title>
+    <!-- 1. Bootstrap CSS (Wajib ada) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. Google Fonts (Opsional, untuk tampilan) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 3. Custom CSS (Wajib ada) -->
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ======================= Header & Navbar ======================= -->
+    <header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <!-- Logo (Sesuai tema admin) -->
+            <a class="navbar-brand fw-bold text-danger" href="index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="d-inline-block align-text-top" viewBox="0 0 16 16" style="margin-top: -3px; margin-right: 4px;">
+                    <path fill-rule="evenodd" d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.857 1.286a.5.5 0 0 1-.611-.452V10l-1.714 1.286a.5.5 0 0 1-.595.04L7 10.4V11.5a.5.5 0 0 1-.6.4L3.286 11H1.002zM1 3.5v.918l3.143 1.047a.5.5 0 0 0 .595-.04L7 4.6V3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0-.5.5zm14 0a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0-.5.5v1.1L12.286 6.5a.5.5 0 0 0 .595.04L15 5.418V3.5z"/>
+                </svg>
+                LaundryYuk
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#layanan">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tentang">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- DIUBAH: Tombol Login sekarang mengarah ke login.html -->
+                        <a class="nav-link btn btn-danger text-white btn-sm px-3" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======================= Hero Section ======================= -->
+    <main>
+        <section class="hero-section text-center bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h1 class="display-3">Bersih, Cepat, Terpercaya.</h1>
+                        <p class="lead text-muted my-4">
+                            Pakaian kotor menumpuk? Biarkan kami yang urus. Layanan laundry profesional dengan penjemputan gratis dan pelacakan digital.
+                        </p>
+                        <!-- DIUBAH: Tombol ini sekarang mengarah ke login.html -->
+                        <a class="btn btn-danger btn-lg px-4" href="login.html" role="button">Mulai Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= Section Layanan Kami ======================= -->
+        <section class="py-5" id="layanan">
+            <div class="container">
+                <h2 class="text-center section-title">Layanan Kami</h2>
+                <div class="row g-4 text-center">
+                    <!-- Card Layanan 1: Kiloan -->
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body">
+                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.604 1.5 6A.5.5 0 0 0 4 10h8a.5.5 0 0 0 .487-.671L11.8 3.671a.5.5 0 0 0-.487-.37H3.62l-.4-1.6H.5a.5.5 0 0 0-.5-.5zM3.14 3l1.25 5h8.22l-1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/></svg>
+                                <h5 class="card-title fw-bold">Cuci Kiloan</h5>
+                                <p class="card-text text-muted">Solusi praktis untuk cucian harian Anda. Bersih, wangi, dan rapi. Tersedia paket reguler dan ekspres.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Layanan 2: Satuan -->
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body">
+                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="m.293 8.293 1.414 1.414L3 8.414v5.086L2 14.5V15h12v-.5l-1-1v-5.086l1.293 1.293 1.414-1.414L9 4.086V1.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V4.086L.293 8.293zM5 14v-5.086l-1.646 1.647L2 9.207V14h3zM11 14V9.207l-1.354 1.354L8 12.207V14h3z"/></svg>
+                                <h5 class="card-title fw-bold">Cuci Satuan</h5>
+                                <p class="card-text text-muted">Perawatan premium untuk barang spesial Anda seperti Jas, Kebaya, Gaun, atau Boneka.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Layanan 3: Sepatu & Tas -->
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body">
+                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8.21 3.24a.5.5 0 0 1 .49 0l2.5 1.5a.5.5 0 0 1 .23.44V12a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5V5.18a.5.5 0 0 1 .23-.44l2.5-1.5zM7 12h2v-3H7v3zm-4 0V5.18c0-.18.09-.35.23-.44l2.5-1.5a.5.5 0 0 1 .49 0l2.03 1.218a.5.5 0 0 1 0 .864L5.43 7.07a.5.5 0 0 1-.43.02L3 6.64V12H2zm8 0V6.64l-2.02-1.212a.5.5 0 0 1-.43-.02L9.57 7.07a.5.5 0 0 1 0 .864L11.5 9.15v2.85h-1z"/></svg>
+                                <h5 class="card-title fw-bold">Sepatu & Tas</h5>
+                                <p class="card-text text-muted">Membersihkan noda dan merawat bahan sepatu & tas Anda agar kembali seperti baru.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======================= Section Tentang Kami ======================= -->
+        <section class="py-5 bg-light" id="tentang">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="https://placehold.co/600x400/D93444/white?text=Tim+Kami" class="img-fluid rounded" alt="Tim LaundryYuk">
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="section-title">Kenapa Memilih LaundryYuk?</h2>
+                        <p class="text-muted">Kami bukan sekadar laundry biasa. Kami adalah solusi modern untuk masalah cucian Anda. Dengan aplikasi berbasis web, Anda bisa memesan, melacak, dan membayar, semua dari genggaman Anda.</p>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-2">✓ Sistem pelacakan order digital (Anti-Hilang)</li>
+                            <li class="mb-2">✓ Layanan penjemputan gratis ke lokasi Anda</li>
+                            <li class="mb-2">✓ Pembayaran online yang aman dan mudah</li>
+                            <li>✓ Hasil cucian dijamin bersih, wangi, dan higienis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================= Footer ======================= -->
+    <footer class="py-4 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="fw-bold text-danger">LaundryYuk</h5>
+                    <p class="text-muted small">© 2025 Krisna & Tim. Dibuat sebagai Tugas Besar Mata Kuliah Pemrograman Web.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-white">Navigasi</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="text-white-50 text-decoration-none" href="#layanan">Layanan</a></li>
+                        <li><a class="text-white-50 text-decoration-none" href="#tentang">Tentang</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-white">Akun</h5>
+                    <ul class="list-unstyled">
+                        <!-- DIUBAH: Link Login Footer -->
+                        <li><a class="text-white-50 text-decoration-none" href="login.html">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- 1. Bootstrap JS (Wajib ada) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
