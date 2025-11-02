@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Laundry Delivery</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div>
+            <a class="sidebar-brand" href="#">
+                <img src="/admin/Logo_Laundry_Yuk-removebg-preview.png" alt="LAUNDRY YUK!" class="brand-logo">
+                <!-- <span>LAUNDRY YUK!</span> -->
+            </a>
+
+            <ul class="nav flex-column" id="sidebar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-page="dashboard"> <i class="bi bi-grid-fill"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="orders">
+                        <i class="bi bi-card-checklist"></i> Manajemen Order
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="drivers">
+                        <i class="bi bi-truck"></i> Manajemen Driver
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="laporan">
+                        <i class="bi bi-file-earmark-bar-graph"></i> Laporan
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-person-circle"></i> Admin Satu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/landing/index.html">
+                        <i class="bi bi-box-arrow-left" ></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="content">
+        <nav class="top-navbar">
+            <h5 class="mb-0" id="page-title">Dashboard</h5>
+            
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm" type="button" id="notification-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-bell"></i> Notifikasi <span class="badge bg-danger ms-1" id="notification-count">0</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notification-dropdown" id="notification-list">
+                    </ul>
+            </div>
+        </nav>
+        
+        <div id="alert-container" class="position-fixed top-0 end-0 p-3" style="z-index: 1100"></div>
+
+        <div id="page-dashboard" class="page-content active">
+            <div class="dashboard-stats" id="dashboard-stats-cards">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>...</h3>
+                        <p>Total Pesanan</p>
+                    </div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>...</h3>
+                        <p>Total Pendapatan (Lunas)</p>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>...</h3>
+                        <p>Pesanan Perlu Diproses</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-modern">
+                <div class="card-header-modern">
+                    <h5 class="mb-0">Ringkasan Order Terbaru</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-modern mb-0">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Pelanggan</th>
+                                <th>Status Terkini</th>
+                                <th class="text-end">Total(Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dashboard-order-ringkasan">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-orders" class="page-content">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h4 class="mb-1 fw-bold text-dark">Manajemen Order</h4>
+                    <p class="text-muted mb-0">Kelola semua pesanan laundry dari pelanggan</p>
+                </div>
+                <button class="btn-add-order" data-bs-toggle="modal" data-bs-target="#manualOrderModal">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Entry Laundry Manual</span>
+                </button>
+            </div>
+            
+            <div class="card-order-management">
+                <div class="card-header-order">
+                    <h5 class="mb-0">
+                        <i class="bi bi-card-checklist"></i>
+                        Daftar Semua Order
+                    </h5>
+                    <div class="text-muted small">
+                        Total: <span class="fw-bold text-primary" id="total-orders-count">0</span> orders
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-order-management mb-0">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Order ID</th>
+                                <th style="width: 200px;">Pelanggan</th>
+                                <th style="width: 180px;">Jadwal Jemput</th>
+                                <th style="width: 180px;">Status</th>
+                                <th style="width: 150px;">Pembayaran</th>
+                                <th style="width: 300px;" class="text-end">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="page-drivers" class="page-content">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#driverModal" data-action="create">
+                    <i class="bi bi-plus-circle me-2"></i> Tambah Driver Baru
+                </button>
+            </div>
+            <div class="card card-table">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Driver ID</th>
+                                <th>Nama</th>
+                                <th>Telepon</th>
+                                <th>Status</th>
+                                <th class="text-end">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="driver-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="page-laporan" class="page-content">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Laporan Visual (Pesanan per Status)</h5>
+                    <button class="btn btn-outline-danger btn-sm" id="export-csv-btn">
+                        <i class="bi bi-download me-2"></i> Export Laporan (.CSV)
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                    <div class="chart-container-modern" id="laporan-chart-container">
+                        <!-- Chart akan di-render oleh JavaScript -->
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="card card-modern h-100">
+                        <div class="card-header-modern">
+                            <h5 class="mb-0">
+                                <i class="bi bi-graph-up me-2" style="color: #0d6efd;"></i>
+                                Tren Order Bulanan
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container-modern" style="min-height: 350px;">
+                                <canvas id="trenOrderChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card card-modern h-100">
+                        <div class="card-header-modern">
+                            <h5 class="mb-0">
+                                <i class="bi bi-bar-chart-line me-2" style="color: #198754;"></i>
+                                Pendapatan per Bulan
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container-modern" style="min-height: 350px;">
+                                <canvas id="pendapatanChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="modal fade" id="manualOrderModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formManualOrder">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Entry Laundry Manual (Walk-in)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Buat order baru untuk pelanggan walk-in. Status akan diset berdasarkan input harga.</p>
+                        <div class="mb-3">
+                            <label for="manualCustomerName" class="form-label">Nama Pelanggan</label>
+                            <input type="text" class="form-control" id="manualCustomerName" name="customer_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="manualCustomerPhone" class="form-label">No. Telepon</label>
+                            <input type="tel" class="form-control" id="manualCustomerPhone" name="phone_number" required>
+                        </div>
+                         <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="manualWeight" class="form-label">Berat (kg)</label>
+                                <input type="number" step="0.01" class="form-control" id="manualWeight" name="total_weight" placeholder="Opsional (cth: 5.5)">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="manualPrice" class="form-label">Total Harga (Rp)</label>
+                                <input type="number" class="form-control" id="manualPrice" name="total_price" placeholder="Opsional (cth: 55000)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Simpan Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="detailOrderModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formUpdateStatus">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Status Order: <span id="modalOrderId">#LD-000</span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="order_id" id="status_order_id">
+                        <div class="status-checklist" id="statusChecklistGroup"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-danger">Simpan Perubahan Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="verifikasiModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formVerifikasi">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Verifikasi Pembayaran: <span id="verif_order_id">#LD-000</span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="order_id" id="verif_order_id_input">
+                        <p>Pelanggan <strong id="verif_customer_name"></strong> telah mengupload bukti.</p>
+                        <div class="mb-3">
+                            <label class="form-label">Preview Bukti Transfer:</label>
+                            <img src="" alt="Bukti Pembayaran" class="payment-proof-preview" id="verif_proof_image">
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            Tagihan: <strong id="verif_amount">Rp 0</strong>. Cek mutasi rekening Anda.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-check-circle-fill me-1"></i> Ya, Verifikasi Pembayaran
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="inputTagihanModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formInputTagihan">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Input/Edit Tagihan: <span id="tagihan_order_id">#LD-000</span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="order_id" id="tagihan_order_id_input">
+                        <p>Cucian dari <strong id="tagihan_customer_name"></strong> telah ditimbang.</p>
+                        <div class="mb-3">
+                            <label for="totalWeight" class="form-label">Berat Cucian (kg)</label>
+                            <input type="number" step="0.01" class="form-control" id="totalWeight" name="total_weight" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="totalPrice" class="form-label">Total Harga (Rp)</label>
+                            <input type="number" class="form-control" id="totalPrice" name="total_price" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Simpan & Kirim Tagihan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Di dalam modal assignDriverModal, tambahkan input ini -->
+    <div class="modal fade" id="assignDriverModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formAssignDriver">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="driver_order_id">Assign Driver: #LD-000</h5> <!-- Diperbaiki ID -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="order_id" id="driver_order_id_input">
+                        <!-- TAMBAHKAN INPUT INI -->
+                        <input type="hidden" name="assignment_type" id="driver_assignment_type">
+                        <p id="assign-driver-description">Pilih driver untuk mengambil pesanan ini.</p> <!-- Diperbaiki ID -->
+                        <div class="mb-3">
+                            <label for="driverSelect" class="form-label">Driver Tersedia</label>
+                            <select class="form-select" id="driverSelect" name="driver_id" required></select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Simpan Tugas Driver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="driverModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formDriver">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="driverModalTitle">Tambah Driver Baru</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="driver_id" id="driver_id_input">
+                        <div class="mb-3">
+                            <label for="driverName" class="form-label">Nama Driver</label>
+                            <input type="text" class="form-control" id="driverName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="driverPhone" class="form-label">Nomor Telepon</label>
+                            <input type="tel" class="form-control" id="driverPhone" name="phone" required>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="driverAvailable" name="isAvailable" checked>
+                            <label class="form-check-label" for="driverAvailable">Tersedia (Available)</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Simpan Driver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+/* Mengatur layout body agar form login berada di tengah */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa; /* Latar belakang abu-abu muda (seperti admin) */
+}
+
+/* Mengatur lebar kartu login */
+.login-wrapper {
+    max-width: 400px;
+    width: 100%;
+    padding: 15px;
+}
+
+.card {
+    border-radius: 0.5rem;
+}
+

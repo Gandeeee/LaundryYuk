@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaundryKu - Dashboard Pelanggan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="customer.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/Logo_Laundry_Yuk-removebg-preview.png" alt="LaundryYuk Logo" class="brand-logo-img me-2">
+                <span class="fs-5 fw-bold" style="color: var(--admin-dark);">LaundryYuk!</span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nav-dashboard" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-order" href="#">Buat Pesanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-history" href="#">Riwayat</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="me-3 fw-500" style="color: var(--admin-gray);">Hai, Krisna</span>
+                <a href="../landing/index.html" class="btn btn-danger btn-sm">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4 mt-md-5 mb-5">
+
+        <div id="dashboard-page" class="page-section">
+            <h2 class="page-title mb-4">Dashboard Saya</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card stat-card">
+                        <div class="card-body p-4 d-flex align-items-center">
+                            <div class="stat-icon bg-warning me-4">
+                                <i class="bi bi-arrow-repeat"></i>
+                            </div>
+                            <div>
+                                <h5 class="card-title">Pesanan Diproses</h5>
+                                <p class="card-value">1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card stat-card">
+                        <div class="card-body p-4 d-flex align-items-center">
+                            <div class="stat-icon bg-success me-4">
+                                <i class="bi bi-patch-check-fill"></i>
+                            </div>
+                            <div>
+                                <h5 class="card-title">Total Pesanan Selesai</h5>
+                                <p class="card-value">3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="page-subtitle mt-4 mb-3">Ringkasan Orderku</h3>
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">#LD-3</th>
+                                    <td>27 Okt 2025</td>
+                                    <td>
+                                        <a href="#" class="badge status-badge bg-success" 
+                                           data-bs-toggle="modal" 
+                                           data-bs-target="#statusDetailModal"
+                                           data-order-id="#LD-3"
+                                           data-order-status="PROSES PENCUCIAN"
+                                           data-order-total="Rp 70.000"
+                                           data-order-date="27 Okt 2025"
+                                           data-order-layanan="Cuat Kering Setrika 2 Hari">
+                                           PROSES PENCUCIAN
+                                        </a>
+                                    </td>
+                                    <td>Rp 70.000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">#LD-2</th>
+                                    <td>26 Okt 2025</td>
+                                    <td>
+                                        <a href="#" class="badge status-badge bg-warning"
+                                           data-bs-toggle="modal" 
+                                           data-bs-target="#statusDetailModal"
+                                           data-order-id="#LD-2"
+                                           data-order-status="MENUNGGU PEMBAYARAN"
+                                           data-order-total="Rp 55.000"
+                                           data-order-date="26 Okt 2025"
+                                           data-order-layanan="Cuci Kering Lipat">
+                                           MENUNGGU PEMBAYARAN
+                                        </a>
+                                    </td>
+                                    <td>Rp 55.000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">#LD-1</th>
+                                    <td>25 Okt 2025</td>
+                                    <td>
+                                        <a href="#" class="badge status-badge bg-dark"
+                                           data-bs-toggle="modal" 
+                                           data-bs-target="#statusDetailModal"
+                                           data-order-id="#LD-1"
+                                           data-order-status="SELESAI DICUCI"
+                                           data-order-total="Rp 40.000"
+                                           data-order-date="25 Okt 2025"
+                                           data-order-layanan="Cuci Kering">
+                                           SELESAI DICUCI
+                                        </a>
+                                    </td>
+                                    <td>Rp 40.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="order-page" class="page-section" style="display: none;">
+            <h2 class="page-title mb-4">Buat Pesanan Baru</h2>
+            <div class="card">
+                <div class="card-body p-4 p-md-5">
+                    <form id="orderForm">
+                        
+                        <div class="mb-4">
+                            <label for="serviceType" class="form-label fw-bold">Pilih Layanan</label>
+                            <select class="form-select form-select-lg" id="serviceType" required>
+                                <option value="" disabled selected>Pilih jenis layanan...</option>
+                                <optgroup label="Layanan Cuci (Kiloan)">
+                                    <option value="kilo_cucikering">Cuci Kering (5.000/KG)</option>
+                                    <option value="kilo_cucikeringlipat">Cuci Kering Lipat (5.500/KG)</option>
+                                    <option value="kilo_cucikeringexp6">Cuci Kering Express 6 Jam (6.000/KG)</option>
+                                    <option value="kilo_cucikeringexp3">Cuci Kering Express 3 Jam (7.000/KG)</option>
+                                    <option value="kilo_cksetrika2hari">Cuci Kering Setrika 2 Hari (8.000/KG)</option>
+                                    <option value="kilo_cksetrika3hari">Cuci Kering Setrika 3 Hari (7.000/KG)</option>
+                                    <option value="kilo_cksetrika4hari">Cuci Kering Setrika 4 Hari (6.500/KG)</option>
+                                    <option value="kilo_csexp6jam">Cuci Setrika Express 6 Jam (13.000/KG)</option>
+                                    <option value="kilo_csexp1jam">Cuci Setrika Express 1 Jam (10.000/KG)</option>
+                                    <option value="kilo_setrikasaja">Setrika Saja 3 Hari (5.000/KG)</option>
+                                    <option value="kilo_kering">Kering (4.000/KG)</option>
+                                </optgroup>
+                                <optgroup label="Layanan Satuan">
+                                    <option value="satuan_bedcover">Bedcover (25RB-40RB/PC)</option>
+                                    <option value="satuan_sprei">Cuci Sprei/Selimut (10RB-15RB/SET)</option>
+                                    <option value="satuan_tas">Tas Ransel (25RB-40RB/PC)</option>
+                                    <option value="satuan_boneka">Boneka (5RB-70RB)</option>
+                                    <option value="satuan_sepatu">Sepatu (25RB/PSG)</option>
+                                    <option value="satuan_karpet">Karpet Tebal (30RB/M²)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="address" class="form-label fw-bold">Alamat Penjemputan</label>
+                            <textarea class="form-control" id="address" rows="4" placeholder="Masukkan alamat lengkap..." required></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="phone" class="form-label fw-bold">Nomor Telepon (WhatsApp)</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="08xxxxxxxxxx" required>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label for="pickupDate" class="form-label fw-bold">Tanggal Jemput</label>
+                                <input type="date" class="form-control" id="pickupDate" required>
+                                <div class="invalid-feedback">Tolong pilih tanggal penjemputan.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pickupTime" class="form-label fw-bold">Waktu Jemput</label>
+                                <input type="time" class="form-control" id="pickupTime" required>
+                                <div class="invalid-feedback">Tolong pilih waktu penjemputan.</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="notes" class="form-label fw-bold">Catatan (Opsional)</label>
+                            <input type="text" class="form-control" id="notes" placeholder="Contoh: Ada noda kopi di baju putih">
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 pt-3 border-top">
+                            <button type="button" id="cancelOrder" class="btn btn-light btn-lg me-md-2">Batal</button>
+                            <button type="submit" class="btn btn-danger btn-lg">Kirim Pesanan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="history-page" class="page-section" style="display: none;">
+            <h2 class="page-title mb-4">Riwayat Pesanan Saya</h2>
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">#LD-3</th>
+                                    <td>27 Okt 2025</td>
+                                    <td>
+                                        <a href="#" class="badge status-badge bg-success"
+                                           data-bs-toggle="modal" 
+                                           data-bs-target="#statusDetailModal"
+                                           data-order-id="#LD-3"
+                                           data-order-status="PROSES PENCUCIAN"
+                                           data-order-total="Rp 70.000"
+                                           data-order-date="27 Okt 2025"
+                                           data-order-layanan="Cuci Kering Setrika 2 Hari">
+                                           PROSES PENCUCIAN
+                                        </a>
+                                    </td>
+                                    <td>Rp 70.000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">#LD-2</th>
+                                    <td>26 Okt 2025</td>
+                                    <td>
+                                        <a href="#" class="badge status-badge bg-warning"
+                                           data-bs-toggle="modal" 
+                                           data-bs-target="#statusDetailModal"
+                                           data-order-id="#LD-2"
+                                           data-order-status="MENUNGGU PEMBAYARAN"
+                                           data-order-total="Rp 55.000"
+                                           data-order-date="26 Okt 2025"
+                                           data-order-layanan="Cuci Kering Lipat">
+                                           MENUNGGU PEMBAYARAN
+                                        </a>
+                                    </td>
+                                    <td>Rp 55.000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">#LD-1</th>
+                                    <td>25 Okt 2025</td>
+                                    <td>
+                                        <a href="#" class="badge status-badge bg-dark"
+                                           data-bs-toggle="modal" 
+                                           data-bs-target="#statusDetailModal"
+                                           data-order-id="#LD-1"
+                                           data-order-status="SELESAI DICUCI"
+                                           data-order-total="Rp 40.000"
+                                           data-order-date="25 Okt 2025"
+                                           data-order-layanan="Cuci Kering">
+                                           SELESAI DICUCI
+                                        </a>
+                                    </td>
+                                    <td>Rp 40.000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">#LD-0</th>
+                                    <td>24 Okt 2025</td>
+                                    <td>
+                                        <a href="#" class="badge status-badge bg-danger"
+                                           data-bs-toggle="modal" 
+                                           data-bs-target="#statusDetailModal"
+                                           data-order-id="#LD-0"
+                                           data-order-status="DIBATALKAN"
+                                           data-order-total="Rp 0"
+                                           data-order-date="24 Okt 2025"
+                                           data-order-layanan="Cuci Kering Express 3 Jam">
+                                           DIBATALKAN
+                                        </a>
+                                    </td>
+                                    <td>Rp 0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 LaundryYuk - Krisna M. Rahman. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <div class="modal fade" id="statusDetailModal" tabindex="-1" aria-labelledby="statusModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="statusModalTitle">Detail Pesanan: #...</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="statusModalBody">
+                    <p>Memuat detail pesanan...</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="customer.js"></script>
+</body>
+
+</html>
