@@ -19,3 +19,7 @@ Proyek aplikasi manajemen laundry berbasis web untuk mata kuliah Pemrograman Web
 - [ ] **(Database)** Implementasi skema database (MySQL).
 - [ ] **(Backend)** Implementasi ke framework Laravel.
 - [ ] **(Logic)** Sinkronisasi status pesanan (Admin ↔ Customer).
+
+
+akses draft
+laundryyukfrontendver.netlify.app
