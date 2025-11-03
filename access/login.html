@@ -5,20 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - LaundryYuk</title>
-    <!-- 1. Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 2. Google Fonts (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- 3. Kustom CSS (memanggil login.css) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="login-wrapper">
         <div class="card shadow-lg border-0">
-            <!-- Header Kartu dengan Logo -->
             <div class="card-header bg-danger text-white text-center">
-                <svg class="h-8 w-8 text-white me-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30">
+                <svg class="me-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 4a1 1 0 011-1h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM7 8h10M7 12h5m-5 4h8" />
                 </svg>
@@ -28,40 +24,24 @@
             <div class="card-body p-4 p-md-5">
                 <h5 class="card-title text-center mb-4">Silakan Login</h5>
                 
-                <!-- Formulir Login -->
                 <form id="loginForm">
-                    <!-- Input Email -->
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" required>
                     </div>
                     
-                    <!-- Input Password -->
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
+                    <div class="mb-4"> <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" required>
                     </div>
                     
-                    <!-- Pilihan Role -->
-                    <div class="mb-3">
-                        <label for="role" class="form-label">Login sebagai:</label>
-                        <select class="form-select" id="role" required>
-                            <option value="" disabled selected>Pilih role...</option>
-                            <option value="customer">Customer</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-
-                    <!-- Tombol Submit -->
                     <div class="d-grid pt-2">
-                        <button type="submit" class="btn btn-danger btn-lg">Login</button>
+                        <button type="submit" class="btn btn-danger">Login</button>
                     </div>
                 </form>
 
-                <!-- LINK BARU: Tautan ke Halaman Registrasi -->
                 <div class="text-center mt-4">
                     <small class="text-muted">Belum punya akun?
-                        <a href="register.html" class="text-danger fw-bold">Daftar di sini</a>
+                        <a href="register.html">Daftar di sini</a>
                     </small>
                 </div>
 
@@ -69,11 +49,8 @@
         </div>
     </div>
 
-    <!-- 1. jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <!-- 2. Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- 3. Kustom JS (memanggil login.js) -->
     <script src="login.js"></script>
 </body>
 

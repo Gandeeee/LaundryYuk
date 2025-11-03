@@ -87,22 +87,48 @@ $(document).ready(function() {
             // Update title modal
             modalTitle.text('Detail Pesanan: ' + orderId);
 
-            // Buat HTML untuk body modal (dengan timeline)
-            var timelineHtml = buildTimeline(status, tanggal, layanan, total);
+            // Buat HTML untuk body modal (dengan timeline ATAU QR Code)
+            var bodyHtml = buildTimeline(status, tanggal, layanan, total);
             
             // Update body modal
-            modalBody.html(timelineHtml);
+            modalBody.html(bodyHtml);
         });
     }
 
     // --- FUNGSI HELPER BARU UNTUK MEMBUAT TIMELINE ---
     function buildTimeline(status, tanggal, layanan, total) {
+        
+        // --- MODIFIKASI DIMULAI DI SINI ---
+        // Cek jika statusnya adalah 'MENUNGGU PEMBAYARAN'
+        if (status === 'MENUNGGU PEMBAYARAN') {
+            // Buat HTML khusus untuk tampilan QRIS
+            // GANTI '/path/ke/gambar/qris_anda.png' dengan path gambar QR Anda yang sebenarnya
+            var paymentHtml = `
+                <div class="text-center p-2">
+                    <p class="mb-2 fw-500">Silakan selesaikan pembayaran Anda:</p>
+                    <h2 class="fw-bold mb-3" style="color: var(--admin-primary);">${total}</h2>
+                    
+                    <img src="/qris_dummy.jpg" alt="QR Code Pembayaran" class="img-fluid rounded mb-3" style="max-width: 250px; border: 1px solid var(--admin-border);">
+                    
+                    <p class="text-muted small mb-0">
+                        Pindai QRIS di atas menggunakan aplikasi e-wallet atau m-banking Anda.
+                        Pesanan akan otomatis diproses setelah pembayaran terkonfirmasi.
+                    </p>
+                </div>
+            `;
+            return paymentHtml;
+        }
+        // --- MODIFIKASI SELESAI ---
+
+
+        // (Kode di bawah ini HANYA akan berjalan jika status BUKAN 'MENUNGGU PEMBAYARAN')
+
         // Definisikan semua tahapan
         // (Ini disesuaikan dengan alur logis yang kita bahas sebelumnya)
         // Tahapan ini harus URUT
         var simplifiedStages = [
             { id: 'MENUNGGU PENJEMPUTAN', text: 'Pesanan Dibuat' },
-            { id: 'MENUNGGU PEMBAYARAN', text: 'Menunggu Pembayaran' },
+            { id: 'MENUNGGU PEMBAYARAN', text: 'Menunggu Pembayaran' }, // Ini tetap ada untuk logika timeline jika diperlukan
             { id: 'PROSES PENCUCIAN', text: 'Proses Pencucian' },
             { id: 'SELESAI DICUCI', text: 'Selesai Dicuci (Siap Diantar)' }
         ];
