@@ -8,6 +8,8 @@ Proyek aplikasi manajemen laundry berbasis web untuk mata kuliah Pemrograman Web
 
 - [x] **UI Selesai** (Desain Awal)
 - [x] **Revisi UI Selesai** (Perbaikan alur Login, Register, dan Halaman Customer)
+- [x] Responsive design admin dashboar
+- [x] Responsive design customer 
 
 ---
 
