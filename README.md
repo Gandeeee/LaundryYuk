@@ -13,7 +13,6 @@ Proyek aplikasi manajemen laundry berbasis web untuk mata kuliah Pemrograman Web
 
 ## 🚀 Things To Do Next (Roadmap)
 
-- [ ] **(Customer)** Tambah fitur upload file saat status pembayaran.
 - [ ] **(Admin)** Tambah percabangan harga untuk tiap layanan.
 - [ ] **(Database)** Finalisasi desain ERD.
 - [ ] **(Database)** Implementasi skema database (MySQL).
