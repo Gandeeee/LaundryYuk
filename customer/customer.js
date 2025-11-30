@@ -98,24 +98,41 @@ $(document).ready(function() {
     // --- FUNGSI HELPER BARU UNTUK MEMBUAT TIMELINE ---
     function buildTimeline(status, tanggal, layanan, total) {
         
-        // --- MODIFIKASI DIMULAI DI SINI ---
+        // --- MODIFIKASI DIMULAI DI SINI (REVISI UPLOAD) ---
         // Cek jika statusnya adalah 'MENUNGGU PEMBAYARAN'
         if (status === 'MENUNGGU PEMBAYARAN') {
             // Buat HTML khusus untuk tampilan QRIS
-            // GANTI '/path/ke/gambar/qris_anda.png' dengan path gambar QR Anda yang sebenarnya
             var paymentHtml = `
                 <div class="text-center p-2">
                     <p class="mb-2 fw-500">Silakan selesaikan pembayaran Anda:</p>
                     <h2 class="fw-bold mb-3" style="color: var(--admin-primary);">${total}</h2>
                     
-                    <img src="/qris_dummy.jpg" alt="QR Code Pembayaran" class="img-fluid rounded mb-3" style="max-width: 250px; border: 1px solid var(--admin-border);">
+                    <img src="/qris_laundry.jpeg" alt="QR Code Pembayaran" class="img-fluid rounded mb-3" style="max-width: 250px; border: 1px solid var(--admin-border);">
                     
                     <p class="text-muted small mb-0">
                         Pindai QRIS di atas menggunakan aplikasi e-wallet atau m-banking Anda.
-                        Pesanan akan otomatis diproses setelah pembayaran terkonfirmasi.
                     </p>
                 </div>
-            `;
+
+                <div class="border-top px-3 pt-3 mt-3">
+                    <p class="text-center fw-bold mb-2">Sudah Bayar? Kirim Bukti</p>
+                    <p class="text-muted small text-center mb-3">
+                        Admin akan memverifikasi bukti Anda secara manual (simulasi).
+                    </p>
+                    
+                    <form id="uploadProofForm">
+                        <div class="mb-3">
+                            <label for="paymentProofFile" class="form-label fw-500">Upload Bukti Transfer (JPG/PNG)</label>
+                            <input class="form-control" type="file" id="paymentProofFile" accept="image/png, image/jpeg" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-send-fill me-2"></i>Kirim Bukti Pembayaran
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                `;
             return paymentHtml;
         }
         // --- MODIFIKASI SELESAI ---
@@ -171,4 +188,24 @@ $(document).ready(function() {
         timelineHtml += '</div>'; // Penutup .status-timeline
         return timelineHtml;
     }
+
+    // --- REVISI: Event Handler untuk Form Upload ---
+    // Kita gunakan event delegation pada modal body karena form #uploadProofForm dibuat dinamis
+    $('#statusModalBody').on('submit', '#uploadProofForm', function(e) {
+        e.preventDefault();
+        
+        // Cek apakah file sudah diisi (validasi HTML 'required' seharusnya sudah cukup, tapi ini untuk JS)
+        if ($('#paymentProofFile').val()) {
+            alert('Bukti pembayaran berhasil dikirim (simulasi).\n\nStatus akan segera diperbarui oleh admin setelah verifikasi.');
+            
+            // Tutup modal setelah berhasil
+            var modalInstance = bootstrap.Modal.getInstance(statusDetailModal);
+            modalInstance.hide();
+        } else {
+            // Ini seharusnya tidak terjadi jika 'required' bekerja, tapi sebagai cadangan
+            alert('Harap pilih file bukti pembayaran terlebih dahulu.');
+        }
+    });
+    // --- REVISI SELESAI ---
+
 });

@@ -111,6 +111,13 @@ body {
     font-size: 0.85rem; /* Ukuran font tombol sm */
 }
 
+/* REVISI: Ukuran .btn-lg di mobile */
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+
 .btn-danger {
     background-color: var(--admin-primary);
     border-color: var(--admin-primary);
@@ -252,7 +259,7 @@ body {
     vertical-align: middle;
 }
 
-/* 13. Footer */
+/* 13. Footer (KODE ASLI DIKEMBALIKAN - Penempatan diperbaiki) */
 footer {
     background: linear-gradient(135deg, var(--admin-dark), #111827);
     color: var(--admin-light);
@@ -265,6 +272,7 @@ footer p {
     color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
 }
+
 
 /* 14. Animasi Page Load */
 .page-section {
@@ -363,4 +371,90 @@ footer p {
 }
 .timeline-step.active:last-child::before {
     height: 0;
+}
+
+
+/* 16. REVISI: Responsive Media Queries */
+
+/* Aturan untuk di bawah breakpoint LG (992px) - Navbar collapse */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        /* REVISI: Pusatkan link di tengah & beri jarak bawah */
+        text-align: center;
+        margin-bottom: 1rem; 
+    }
+    .navbar-collapse .d-flex {
+        /* REVISI: Buat info user jadi rapi di menu collapsed */
+        border-top: 1px solid var(--admin-border);
+        padding-top: 1rem;
+        margin-top: 0.5rem;
+        align-items: center !important; /* Paksa rata tengah */
+    }
+}
+
+/* Aturan untuk di bawah breakpoint MD (768px) - Konten mobile */
+@media (max-width: 767.98px) {
+    .page-title {
+        font-size: 1.6rem; /* REVISI: Kecilkan judul utama */
+    }
+    .page-subtitle {
+        font-size: 1.2rem; /* REVISI: Kecilkan sub-judul */
+    }
+
+    .stat-card .card-body {
+        /* REVISI: Tumpuk ikon dan teks di mobile */
+        flex-direction: column; 
+        align-items: center !important;
+        text-align: center;
+    }
+    .stat-icon {
+        /* REVISI: Kecilkan ikon stat */
+        width: 55px; 
+        height: 55px;
+        font-size: 1.6rem;
+        margin-right: 0 !important; /* Hapus margin kanan */
+        margin-bottom: 1rem; /* Beri margin bawah */
+    }
+    .stat-card .card-value {
+        font-size: 1.8rem; /* REVISI: Kecilkan nilai stat */
+    }
+
+    /* REVISI: Kecilkan tombol 'lg' di form order */
+    #order-page .btn-lg {
+        font-size: 0.95rem; 
+        padding: 0.7rem 1.2rem;
+    }
+    
+    /* REVISI: Kurangi padding di card form order */
+    #order-page .card-body {
+         padding: 1.5rem !important;
+    }
+    
+    /* REVISI: Kecilkan font tabel agar muat */
+    .table {
+        font-size: 0.85rem;
+    }
+}
+
+/* Aturan untuk di bawah breakpoint SM (576px) - Konten extra-small */
+@media (max-width: 575.98px) {
+    .page-title {
+        font-size: 1.4rem;
+    }
+    .table {
+        font-size: 0.8rem;
+    }
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 0.3em 0.5em;
+    }
+    .stat-card .card-body {
+        padding: 1rem !important; /* REVISI: Lebih kecil lagi padding */
+    }
+
+    /* REVISI BARU: Buat modal lebih ramping di mobile */
+    #statusDetailModal .modal-dialog {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
 }

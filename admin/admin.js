@@ -1,5 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
     
+    // --- REVISI: Sidebar Toggle Logic ---
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const adminSidebar = document.getElementById('adminSidebar');
+
+    if (sidebarToggleBtn) {
+        sidebarToggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-toggled');
+        });
+    }
+
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', function() {
+            document.body.classList.remove('sidebar-toggled');
+        });
+    }
+    
+    // REVISI: Tutup sidebar saat link navigasi diklik (di mobile)
+    if (adminSidebar) {
+        adminSidebar.addEventListener('click', function(e) {
+            if (e.target.classList.contains('nav-link')) {
+                if (window.innerWidth < 992) { // Ukuran breakpoint LG
+                    document.body.classList.remove('sidebar-toggled');
+                }
+            }
+        });
+    }
+    // --- End of Revisi ---
+
+
     // =========================================================================
     // DATABASE SIMULATION 
     // =========================================================================
@@ -186,24 +216,60 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /** 2. LOGIKA NOTIFIKASI */
-    function renderNotifications() { 
-        if (!notificationList || !notificationCountEl) return;
-        notificationList.innerHTML = '';
+    function renderNotifications() {
+        const notificationContainer = document.getElementById('notification-list-container');
+        // Pastikan kita menggunakan elemen count yang baru
+        const notificationCountBadge = document.getElementById('notification-count');
+        
+        if (!notificationContainer || !notificationCountBadge) return;
+        
+        notificationContainer.innerHTML = '';
+        
+        // Filter: Status Menunggu Pembayaran & Belum Verifikasi
         const notifs = db_orders.filter(o => o.status === 'MENUNGGU_PEMBAYARAN' && !o.is_verified);
-        notificationCountEl.textContent = notifs.length;
+        
+        // Update Badge Count
+        notificationCountBadge.textContent = notifs.length;
+        
+        // Sembunyikan badge jika 0
         if (notifs.length === 0) {
-            notificationList.innerHTML = '<li><span class="dropdown-item text-muted small">Tidak ada notifikasi baru</span></li>';
+            notificationCountBadge.style.display = 'none';
+            
+            // Tampilan Kosong Estetis
+            notificationContainer.innerHTML = `
+                <div class="notif-empty">
+                    <i class="bi bi-bell-slash"></i>
+                    <small>Tidak ada notifikasi baru</small>
+                </div>
+            `;
         } else {
+            notificationCountBadge.style.display = 'block'; // Tampilkan badge
+            
             notifs.forEach(order => {
-                const li = document.createElement('li');
-                li.innerHTML = `<a class="dropdown-item" href="#" data-order-id="${order.order_id}"><div class="fw-bold">Order #${order.order_id}</div><small>Perlu verifikasi dari ${order.customer_name}</small></a>`;
-                li.querySelector('a').addEventListener('click', (e) => {
+                // Buat elemen link
+                const item = document.createElement('a');
+                item.className = 'notification-item dropdown-item'; // Tambah dropdown-item agar fungsi close bootstrap bekerja
+                item.href = '#';
+                item.setAttribute('data-order-id', order.order_id);
+                
+                // HTML Konten Notifikasi
+                item.innerHTML = `
+                    <div class="notif-icon-box">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+                    <div class="notif-content">
+                        <span class="notif-title">Verifikasi Order #${order.order_id}</span>
+                        <span class="notif-desc">Pelanggan <strong>${order.customer_name}</strong> menunggu konfirmasi pembayaran.</span>
+                    </div>
+                `;
+                
+                // Event Listener
+                item.addEventListener('click', (e) => {
                     e.preventDefault();
                     populateVerifikasiModal(order.order_id);
                     if(verifikasiModal) verifikasiModal.show();
-                    else console.error("Verifikasi modal instance not found when clicking notification.");
                 });
-                notificationList.appendChild(li);
+                notificationContainer.appendChild(item);
             });
         }
     }
@@ -598,7 +664,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // %% BAGIAN INI DIPASTIKAN BENAR & DITAMBAH LOGGING %%
     if (assignDriverModalEl) {
         assignDriverModalEl.addEventListener('show.bs.modal', function(event) {
             console.log('[Assign Driver Modal] Event: show.bs.modal triggered.'); 
@@ -638,9 +703,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("[Assign Driver Modal] ERROR: Input #driver_assignment_type not found!");
             }
 
-            // Set title and description - PERBAIKI SELECTOR INI
-            const modalTitle = document.getElementById('driver_order_id'); // Diperbaiki selector
-            const description = document.getElementById('assign-driver-description'); // Diperbaiki selector
+            // Set title and description
+            const modalTitle = document.getElementById('driver_order_id');
+            const description = document.getElementById('assign-driver-description');
             
             if(modalTitle && description) {
                 if (assignmentType === 'pickup') { 
@@ -692,7 +757,7 @@ document.addEventListener('DOMContentLoaded', function() {
         driverModalEl.addEventListener('show.bs.modal', function(e) { 
             const button = e.relatedTarget; if (!button) return;
             const action = button.getAttribute('data-action');
-            if (formDriver) formDriver.reset(); // Hanya reset jika form ada
+            if (formDriver) formDriver.reset();
             else { console.error("Form #formDriver not found during modal show!"); return; }
 
             const driverIdInput = formDriver.querySelector('#driver_id_input');
@@ -713,7 +778,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 driverIdInput.value = driver.driver_id;
                 driverNameInput.value = driver.name || '';
                 driverPhoneInput.value = driver.phone || '';
-                driverAvailableSwitch.checked = driver.isAvailable === true; // Eksplisit boolean
+                driverAvailableSwitch.checked = driver.isAvailable === true;
             } else {
                 driverModalTitle.textContent = 'Tambah Driver Baru';
                 driverIdInput.value = '';
@@ -770,7 +835,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(this); 
             const orderId = formData.get('order_id'); 
             const driverId = formData.get('driver_id'); 
-            const assignmentType = formData.get('assignment_type'); // Sekarang harusnya bisa mendapatkan nilai
+            const assignmentType = formData.get('assignment_type');
             
             console.log('[Assign Driver Submit] Data:', { orderId, driverId, assignmentType });
             
@@ -802,14 +867,12 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("Form #formAssignDriver not found!"); 
     }
     
-    // formDriver sudah dicek di atas
     if(formDriver) {
         formDriver.addEventListener('submit', function(e) { 
             e.preventDefault(); const formData = new FormData(this); const driverId = formData.get('driver_id'); 
-            // Ambil nilai checkbox dengan benar
             const isAvailableChecked = formData.get('isAvailable') === 'on'; 
             const driverData = { name: formData.get('name'), phone: formData.get('phone'), isAvailable: isAvailableChecked };
-            console.log('[Driver Submit] Data:', { driverId, driverData }); // <-- DEBUGGING DRIVER SUBMIT
+            console.log('[Driver Submit] Data:', { driverId, driverData });
 
             if (driverId) { 
                 const index = db_drivers.findIndex(d => d.driver_id == driverId); 

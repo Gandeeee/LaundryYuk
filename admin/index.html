@@ -12,12 +12,11 @@
 </head>
 <body>
 
-    <nav class="sidebar">
+    <nav class="sidebar" id="adminSidebar">
         <div>
             <a class="sidebar-brand" href="#">
                 <img src="/admin/Logo_Laundry_Yuk-removebg-preview.png" alt="LAUNDRY YUK!" class="brand-logo">
-                <!-- <span>LAUNDRY YUK!</span> -->
-            </a>
+                </a>
 
             <ul class="nav flex-column" id="sidebar-nav">
                 <li class="nav-item">
@@ -58,16 +57,30 @@
         </div>
     </nav>
 
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
     <main class="content">
         <nav class="top-navbar">
+            <button class="btn btn-outline-secondary d-lg-none" type="button" id="sidebarToggleBtn">
+                <i class="bi bi-list"></i>
+            </button>
+            
             <h5 class="mb-0" id="page-title">Dashboard</h5>
             
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary btn-sm" type="button" id="notification-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-bell"></i> Notifikasi <span class="badge bg-danger ms-1" id="notification-count">0</span>
+            <div class="dropdown notification-ui">
+                <button class="btn btn-notification" type="button" id="notification-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="badge" id="notification-count">5</span>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notification-dropdown" id="notification-list">
-                    </ul>
+
+                <ul class="dropdown-menu dropdown-menu-end notification-dropdown-menu shadow-lg border-0" aria-labelledby="notification-dropdown">
+                    <li class="notification-header">
+                        <h6 class="dropdown-header">Notifikasi</h6>
+                        <span class="text-muted small">Perlu tindakan anda</span>
+                    </li>
+                    <li><hr class="dropdown-divider my-1"></li>
+                    <div id="notification-list-container"></div>
+                </ul>
             </div>
         </nav>
         
@@ -202,8 +215,7 @@
                 <div class="card-body">
                     <div class="card-body">
                     <div class="chart-container-modern" id="laporan-chart-container">
-                        <!-- Chart akan di-render oleh JavaScript -->
-                    </div>
+                        </div>
                 </div>
                 </div>
             </div>
@@ -362,20 +374,18 @@
         </div>
     </div>
     
-    <!-- Di dalam modal assignDriverModal, tambahkan input ini -->
     <div class="modal fade" id="assignDriverModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="formAssignDriver">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="driver_order_id">Assign Driver: #LD-000</h5> <!-- Diperbaiki ID -->
+                        <h5 class="modal-title" id="driver_order_id">Assign Driver: #LD-000</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="order_id" id="driver_order_id_input">
-                        <!-- TAMBAHKAN INPUT INI -->
                         <input type="hidden" name="assignment_type" id="driver_assignment_type">
-                        <p id="assign-driver-description">Pilih driver untuk mengambil pesanan ini.</p> <!-- Diperbaiki ID -->
+                        <p id="assign-driver-description">Pilih driver untuk mengambil pesanan ini.</p>
                         <div class="mb-3">
                             <label for="driverSelect" class="form-label">Driver Tersedia</label>
                             <select class="form-select" id="driverSelect" name="driver_id" required></select>
