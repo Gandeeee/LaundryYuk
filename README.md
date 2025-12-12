@@ -16,7 +16,7 @@ Aplikasi ini dibangun menggunakan teknologi modern untuk memastikan performa dan
 
 ---
 
-## 🚀 Status Project
+## Status Project
 
 ### Backend: **FULLY FUNCTIONAL (100%)**
 Semua fitur utama secara logika backend sudah berjalan mulus, mencakup:
@@ -54,7 +54,7 @@ Agar kode tidak bentrok dan aman, tolong ikuti aturan ini:
 
 ---
 
-## 🛠️ Cara Install & Menjalankan Project (Untuk Tim)
+## Cara Install & Menjalankan Project (Untuk Tim)
 
 Ikuti langkah ini jika baru pertama kali clone project:
 
@@ -67,7 +67,6 @@ Ikuti langkah ini jika baru pertama kali clone project:
 2.  **Install Dependencies**
     ```bash
     composer install
-    npm install && npm run build
     ```
 
 3.  **Setup Environment**
@@ -91,6 +90,7 @@ Ikuti langkah ini jika baru pertama kali clone project:
     php artisan serve
     ```
 
-## 📢 Catatan Lain
+## Catatan Lain
 - **Konten Presentasi:** Pembagian materi slide akan diinfokan menyusul.
 - **Akun Admin Default:** `admin@gmail.com` / `12345678`
+- **KONTEN PEMBAGIAN PRESENTASI AKAN DIKIRIMKAN DI GRUP**
