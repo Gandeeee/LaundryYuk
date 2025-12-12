@@ -38,7 +38,11 @@ Meskipun backend sudah selesai, **WAJIB** dilakukan *Scenario Testing* lebih lan
 Berikut adalah komponen tampilan yang perlu diperbaiki oleh tim Frontend/UI:
 
 - [ ] **Navbar Customer (Mobile):** Tampilan sidebar/menu di layar HP masih tertutup atau layoutnya berantakan. Perlu fix CSS responsif.
-- [ ] **Tombol Logout Customer:** Saat ini ada efek *hover* warna biru yang tidak sesuai tema. Tolong ubah warnanya agar *blend-in* dengan desain merah/putih LaundryYuk.
+- [ ] <img width="265" height="595" alt="image" src="https://github.com/user-attachments/assets/6c81e5d2-c4e9-40f3-97a1-afa8eade8467" />
+
+- [ ] **Tombol Logout Customer:** Saat ini ketika tombol logout/keluar ditekan ada warna biru yang tidak sesuai tema yang jadi latar belakang. Tolong ubah warnanya agar *blend-in* dengan desain merah/putih LaundryYuk.
+- [ ] <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/a0169c5b-36da-446c-8ec9-f34e433dab3a" />
+
 
 ---
 
