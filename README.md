@@ -1,40 +1,39 @@
-# Laundry Yuk! 🧺
+# Laundry Yuk! - BACKEND UPDATE
 
 Aplikasi manajemen laundry berbasis web menggunakan Laravel & Livewire.
 Project ini dibuat untuk memenuhi tugas kuliah Sistem Informasi Telkom University.
 
 ---
 
-## 🛠️ Tech Stack (Teknologi yang Digunakan)
+## Tech Stack 
 
 Aplikasi ini dibangun menggunakan teknologi modern untuk memastikan performa dan kemudahan pengembangan:
 
 - **Framework:** Laravel 11 + Livewire 3 (Fullstack)
 - **Frontend Styling:** Bootstrap 5 + Custom CSS
 - **Database:** MySQL
-- **Payment Gateway:** Xendit (Sandbox Mode)
-- **Tools:** Git, Composer, NPM
-- **Third-Party Services:** QR Server API (untuk generate QR Code pada Nota)
+- **Tools:** Git + Composer
 
 ---
 
 ## 🚀 Status Project
 
-### ✅ Backend: **FULLY FUNCTIONAL (100%)**
+### Backend: **FULLY FUNCTIONAL (100%)**
 Semua fitur utama secara logika backend sudah berjalan mulus, mencakup:
 - **Manajemen Order:** Create, Update, Delete Order (CRUD).
 - **Tracking:** Pelacakan status cucian real-time.
 - **Payment:** Integrasi pembayaran otomatis via Xendit.
 - **Admin & Driver:** Dashboard khusus admin dan manajemen tugas kurir.
-- **[BARU] Cetak Nota:** Fitur cetak invoice/struk laundry (Thermal Printer Ready) lengkap dengan status bayar. 🖨️
-- **[BARU] Rating & Review:** Customer dapat memberi ulasan setelah barang diterima. ⭐
+- **Rating & Review:** Customer dapat memberi ulasan setelah barang diterima. 
+- **[BARU] Cetak Nota:** Fitur cetak invoice/struk laundry (Thermal Printer Ready) lengkap dengan status bayar. 
 
-### 🧪 Next Step: Scenario Testing
+
+### Next Step: Scenario Testing
 Meskipun backend sudah selesai, **WAJIB** dilakukan *Scenario Testing* lebih lanjut (Coba input data aneh, flow order bolak-balik, dll) untuk memastikan tidak ada error tersembunyi (Bug Hunting).
 
 ---
 
-## 🐛 Known Issues & UI Polish (Perlu Perbaikan)
+## Known Issues & UI Polish (Perlu Perbaikan)
 
 Berikut adalah komponen tampilan yang perlu diperbaiki oleh tim Frontend/UI:
 
@@ -43,11 +42,11 @@ Berikut adalah komponen tampilan yang perlu diperbaiki oleh tim Frontend/UI:
 
 ---
 
-## ⚠️ Git Workflow Rules (PENTING!)
+##  Git Workflow Rules (PENTING!)
 
 Agar kode tidak bentrok dan aman, tolong ikuti aturan ini:
 
-1.  **JANGAN PUSH KE BRANCH `main` LANGSUNG!** ⛔
+1.  **JANGAN PUSH KE BRANCH `main` LANGSUNG!** 
 2.  Setiap mengerjakan fitur atau perbaikan, **BUAT BRANCH BARU**.
     - Contoh: `git checkout -b fix-navbar-mobile`
 3.  Jika sudah selesai, lakukan **Push** di branch tersebut.
@@ -79,7 +78,7 @@ Ikuti langkah ini jika baru pertama kali clone project:
     ```
 
 4.  **Konfigurasi Database**
-    - Buat database di MySQL bernama `laundry_yuk`.
+    - Buat database di MySQL bernama `laundry_yuk_db`.
     - Atur koneksi di file `.env`.
 
 5.  **Migrasi Database**
@@ -94,4 +93,4 @@ Ikuti langkah ini jika baru pertama kali clone project:
 
 ## 📢 Catatan Lain
 - **Konten Presentasi:** Pembagian materi slide akan diinfokan menyusul.
-- **Akun Admin Default:** `admin@laundryyuk.com` / `password`
+- **Akun Admin Default:** `admin@gmail.com` / `12345678`
