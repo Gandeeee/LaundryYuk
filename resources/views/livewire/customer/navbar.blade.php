@@ -156,7 +156,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end shadow">
                     <li>
-                        <a class="dropdown-item text-danger"
+                        <a class="btn btn-danger w-100 mt-3"
                            href="{{ route('logout') }}">
                             <i class="bi bi-box-arrow-right me-2"></i> Keluar
                         </a>
