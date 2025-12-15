@@ -12,6 +12,7 @@ use App\Livewire\Customer\OrderCreate;
 use App\Livewire\Admin\ReportIndex;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Livewire\Customer\OrderHistory;
+use App\Livewire\Customer\OrderDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +20,22 @@ use App\Livewire\Customer\OrderHistory;
 |--------------------------------------------------------------------------
 */
 
-// 1. ROUTE UTAMA = LANDING PAGE
+// ========================
+// PUBLIC
+// ========================
 Route::get('/', LandingPage::class)->name('home');
 
-// 2. ROUTE TAMU (GUEST)
-// Hanya bisa diakses jika BELUM login
+// ========================
+// GUEST
+// ========================
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
 });
 
-// 3. ROUTE LOGOUT
-// Wajib bisa diakses oleh yang sudah login
+// ========================
+// LOGOUT
+// ========================
 Route::get('/logout', function () {
     Auth::logout();
     session()->invalidate();
@@ -38,19 +43,32 @@ Route::get('/logout', function () {
     return redirect()->route('login');
 })->name('logout');
 
-// 4. ROUTE TERPROTEKSI (AUTH)
-// Hanya bisa diakses jika SUDAH login
+// ========================
+// AUTH
+// ========================
 Route::middleware('auth')->group(function () {
-    
-    Route::get('/invoice/{id}/print', [InvoiceController::class, 'print'])->name('invoice.print');
-    // --- ADMIN ROUTES ---
+
+    // -------- INVOICE --------
+    Route::get('/invoice/{id}/print', [InvoiceController::class, 'print'])
+        ->name('invoice.print');
+
+    // -------- ADMIN --------
     Route::get('/admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
     Route::get('/admin/drivers', DriverIndex::class)->name('admin.drivers');
     Route::get('/admin/reports', ReportIndex::class)->name('admin.reports');
     Route::get('/admin/orders', App\Livewire\Admin\OrderIndex::class)->name('admin.orders');
 
-    // --- CUSTOMER ROUTES ---
-    Route::get('/customer/dashboard', CustomerDashboard::class)->name('customer.dashboard');
-    Route::get('/customer/order', OrderCreate::class)->name('customer.order.create');
-    Route::get('/customer/history', OrderHistory::class)->name('customer.history');
+    // -------- CUSTOMER --------
+    Route::get('/customer/dashboard', CustomerDashboard::class)
+        ->name('customer.dashboard');
+
+    // 🔥 DETAIL ORDER (HARUS DI ATAS)
+    Route::get('/customer/order/{order}', OrderDetail::class)
+        ->name('customer.order.detail');
+
+    Route::get('/customer/order', OrderCreate::class)
+        ->name('customer.order.create');
+
+    Route::get('/customer/history', OrderHistory::class)
+        ->name('customer.history');
 });

@@ -13,28 +13,59 @@ class Navbar extends Component
     {
         $userId = Auth::id();
 
-        // Ambil notifikasi penting:
-        // 1. Menunggu Pembayaran (Tagihan keluar)
-        // 2. Driver OTW / Dikirim (Tracking)
-        // 3. Selesai (Barang siap)
+        // =========================
+        // AMBIL NOTIF BELUM DIBACA
+        // =========================
         $notifications = Order::where('user_id', $userId)
-            ->whereIn('status', ['MENUNGGU_PEMBAYARAN', 'DRIVER_OTW', 'DIKIRIM', 'SELESAI_DICUCI', 'TIBA'])
+            ->where('is_notif_read', false) // 🔥 penting
+            ->whereIn('status', [
+                'MENUNGGU_PEMBAYARAN',
+                'DRIVER_OTW',
+                'DIKIRIM',
+                'SELESAI_DICUCI',
+                'TIBA'
+            ])
             ->orderBy('updated_at', 'desc')
-            ->take(5) // Ambil 5 terbaru saja biar rapi
+            ->take(5)
             ->get();
 
         $currentCount = $notifications->count();
-        
-        // Logic Suara: Jika jumlah notifikasi bertambah/berubah
+
+        // =========================
+        // LOGIC SUARA NOTIF
+        // =========================
         $lastCount = Session::get('cust_notif_count', 0);
+
         if ($currentCount > $lastCount) {
             $this->dispatch('play-notification-sound');
         }
+
         Session::put('cust_notif_count', $currentCount);
 
         return view('livewire.customer.navbar', [
             'notifications' => $notifications,
             'notifCount' => $currentCount
         ]);
+    }
+
+    // =========================
+    // SAAT NOTIF DIKLIK
+    // =========================
+    public function markAsRead($orderId)
+    {
+        $order = Order::where('id', $orderId)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        // tandai notif sudah dibaca
+        $order->update([
+            'is_notif_read' => true,
+        ]);
+
+        // reset counter session supaya badge update
+        Session::put('cust_notif_count', 0);
+
+        // redirect ke detail order
+        return redirect()->route('customer.order.detail', $order->id);
     }
 }
