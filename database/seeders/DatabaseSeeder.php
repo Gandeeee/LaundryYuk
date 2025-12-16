@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Buat Akun ADMIN
         User::create([
-            'name' => 'Admin Satu',
+            'name' => 'Super Admin',
             'email' => 'admin@gmail.com', // Email untuk login
             'password' => Hash::make('12345678'), // Password untuk login
             'role' => 'admin', 
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         
         // 2. Buat Akun CUSTOMER
         User::create([
-            'name' => 'Pelanggan Setia',
+            'name' => 'User Testing',
             'email' => 'customer@gmail.com',
             'password' => Hash::make('12345678'),
             'role' => 'customer',
@@ -32,13 +32,13 @@ class DatabaseSeeder extends Seeder
 
         // 3. Buat Data DRIVER (Agar tabel driver tidak kosong)
         Driver::create([
-            'name' => 'Budi (Driver A)',
+            'name' => 'Pak Jarwo',
             'phone' => '081234567890',
             'is_available' => true,
         ]);
 
         Driver::create([
-            'name' => 'Susi (Driver B)',
+            'name' => 'Bu Narmi',
             'phone' => '089876543210',
             'is_available' => true,
         ]);
