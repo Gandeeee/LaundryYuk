@@ -66,6 +66,4 @@ Ikuti langkah ini jika baru pertama kali clone project:
     ```
 
 ## Catatan Lain
-- **Konten Presentasi:** Pembagian materi slide akan diinfokan menyusul.
 - **Akun Admin Default:** `admin@gmail.com` / `12345678`
-- **KONTEN PEMBAGIAN PRESENTASI AKAN DIKIRIMKAN DI GRUP**
