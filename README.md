@@ -28,35 +28,6 @@ Semua fitur utama secara logika backend sudah berjalan mulus, mencakup:
 - **[BARU] Cetak Nota:** Fitur cetak invoice/struk laundry (Thermal Printer Ready) lengkap dengan status bayar. 
 
 
-### Next Step: Scenario Testing
-Meskipun backend sudah selesai, **WAJIB** dilakukan *Scenario Testing* lebih lanjut (Coba input data aneh, flow order bolak-balik, dll) untuk memastikan tidak ada error tersembunyi (Bug Hunting).
-
----
-
-## Known Issues & UI Polish (Perlu Perbaikan)
-
-Berikut adalah komponen tampilan yang perlu diperbaiki oleh tim Frontend/UI:
-
-- [ ] **Navbar Customer (Mobile):** Tampilan sidebar/menu di layar HP masih tertutup atau layoutnya berantakan. Perlu fix CSS responsif.
-- [ ] <img width="265" height="595" alt="image" src="https://github.com/user-attachments/assets/6c81e5d2-c4e9-40f3-97a1-afa8eade8467" />
-
-- [ ] **Tombol Logout Customer:** Saat ini ketika tombol logout/keluar ditekan ada warna biru yang tidak sesuai tema yang jadi latar belakang. Tolong ubah warnanya agar *blend-in* dengan desain merah/putih LaundryYuk.
-- [ ] <img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/a0169c5b-36da-446c-8ec9-f34e433dab3a" />
-
-
----
-
-##  Git Workflow Rules (PENTING!)
-
-Agar kode tidak bentrok dan aman, tolong ikuti aturan ini:
-
-1.  **JANGAN PUSH KE BRANCH `main` LANGSUNG!** 
-2.  Setiap mengerjakan fitur atau perbaikan, **BUAT BRANCH BARU**.
-    - Contoh: `git checkout -b fix-navbar-mobile`
-3.  Jika sudah selesai, lakukan **Push** di branch tersebut.
-4.  Buat **Pull Request (PR)** di GitHub untuk di-merge ke `main`.
-
----
 
 ## Cara Install & Menjalankan Project (Untuk Tim)
 
