@@ -1,4 +1,4 @@
-<div class="container mt-5 pt-4">
+<div wire:poll.5s class="container mt-5 pt-4">
 
     {{-- JUDUL --}}
     <h4 class="fw-bold mb-4">

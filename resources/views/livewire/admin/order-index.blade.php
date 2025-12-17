@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.5s>
     @push('styles')
         <link href="{{ asset('assets/css/admin.css') }}" rel="stylesheet">
     @endpush
