@@ -387,8 +387,6 @@
                 }
             });
         });
-        
-        // 3. FIX Modal Stuck (Backdrop cleanup) untuk SEMUA modal
         const allModalIds = ['uploadPaymentModal', 'detailModal', 'ratingModal'];
         
         allModalIds.forEach(id => {

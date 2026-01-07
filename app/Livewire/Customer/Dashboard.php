@@ -42,7 +42,6 @@ class Dashboard extends Component
     public function openPaymentModal($orderId)
     {
         $this->selectedOrderId = $orderId;
-        // Kita gunakan properti selectedOrder (yang juga dipakai detail) 
         // untuk menampilkan harga di modal pembayaran
         $this->selectedOrder = Order::find($orderId); 
         $this->payment_proof = null; 
@@ -62,7 +61,7 @@ class Dashboard extends Component
         $order = Order::find($this->selectedOrderId);
 
         // Upload ke folder 'public/payment_proofs'
-        // Pastikan Anda sudah menjalankan: php artisan storage:link
+        // php artisan storage:link
         $path = $this->payment_proof->store('payment_proofs', 'public');
 
         $order->update([

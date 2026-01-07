@@ -478,8 +478,10 @@
                         </button>
                         
                         {{-- TOMBOL TOLAK (Pakai Outline Danger) --}}
-                        <button class="btn btn-outline-danger fw-bold py-2" data-bs-dismiss="modal">
-                            <i class="bi bi-x-circle me-2"></i> Tutup / Tolak
+                        <button class="btn btn-outline-danger fw-bold py-2" 
+                                wire:click="rejectPayment"
+                                wire:confirm="Yakin ingin MENOLAK bukti ini? File akan dihapus dan Customer harus upload ulang.">
+                            <i class="bi bi-x-circle me-2"></i> TOLAK (Minta Upload Ulang)
                         </button>
                     </div>
 

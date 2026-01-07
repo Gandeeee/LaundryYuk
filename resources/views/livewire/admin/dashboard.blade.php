@@ -172,9 +172,16 @@
             const revenueData = {!! $chartRevenue !!};
             const orderData = {!! $chartOrders !!};
 
-            // 2. Chart Tren Order (Line Chart dengan Gradient)
+            // ---------------------------------------------
+            // 2. CHART TREN ORDER (Line Chart)
+            // ---------------------------------------------
             const trenCtx = document.getElementById('trenOrderChart').getContext('2d');
             
+            // Cari nilai tertinggi order untuk batas visual
+            const maxOrder = Math.max(...orderData);
+            // [FIX] Batas minimal 10 agar grafik tidak terlihat "penuh" saat order sedikit
+            const suggestedMaxOrder = maxOrder > 10 ? maxOrder + 5 : 10;
+
             // Buat Gradient Biru
             let gradientBlue = trenCtx.createLinearGradient(0, 0, 0, 400);
             gradientBlue.addColorStop(0, 'rgba(13, 110, 253, 0.4)');
@@ -202,7 +209,8 @@
                     scales: {
                         y: { 
                             beginAtZero: true,
-                            ticks: { stepSize: 1 }, // Angka bulat (order tidak mungkin desimal)
+                            suggestedMax: suggestedMaxOrder, // [FIX] Agar tidak menjolak ke atas
+                            ticks: { stepSize: 1 }, 
                             grid: { borderDash: [2, 4] }
                         },
                         x: { grid: { display: false } }
@@ -210,8 +218,16 @@
                 }
             });
 
-            // 3. Chart Pendapatan (Bar Chart Rounded)
+            // ---------------------------------------------
+            // 3. CHART PENDAPATAN (Bar Chart)
+            // ---------------------------------------------
             const pendCtx = document.getElementById('pendapatanChart').getContext('2d');
+            
+            // Cari nilai tertinggi pendapatan
+            const maxRevenue = Math.max(...revenueData);
+            // [FIX] Batas minimal 1 Juta agar grafik terlihat wajar saat awal-awal
+            const suggestedMaxRevenue = maxRevenue > 0 ? maxRevenue * 1.2 : 1000000;
+
             new Chart(pendCtx, {
                 type: 'bar',
                 data: {
@@ -227,27 +243,31 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Rp ' + new Intl.NumberFormat('id-ID').format(context.raw);
+                                }
+                            }
+                        }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
+                            suggestedMax: suggestedMaxRevenue, // [FIX] Agar tidak menjolak
                             grid: { borderDash: [2, 4] },
                             ticks: {
                                 callback: function(value) {
-                                    return 'Rp ' + value.toLocaleString('id-ID');
+                                    // [FIX] Format Angka (Jt / Rb) agar rapi
+                                    if (value >= 1000000) return 'Rp ' + (value/1000000) + ' Jt';
+                                    if (value >= 1000) return 'Rp ' + (value/1000) + ' Rb';
+                                    return 'Rp ' + value;
                                 }
                             }
                         },
                         x: { grid: { display: false } }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return 'Rp ' + context.raw.toLocaleString('id-ID');
-                                }
-                            }
-                        }
                     }
                 }
             });

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
@@ -39,13 +40,21 @@ class Login extends Component
             'password' => 'required',
         ]);
 
-        // 2. Coba Login (Laravel Auth)
+        // 2. Cek apakah Email ada di Database?
+        // Jika email TIDAK ditemukan, kirim pesan error spesifik.
+        if (!User::where('email', $this->email)->exists()) {
+            session()->flash('error', 'Email tidak terdaftar. Silakan daftar akun terlebih dahulu.');
+            return; // Berhenti di sini, jangan lanjut cek password
+        }
+
+        // 3. Coba Login (Laravel Auth)
+        // Karena email sudah pasti ada (lolos cek di atas), jika attempt gagal berarti Password Salah.
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             
             // Regenerasi session ID (Security Best Practice)
             session()->regenerate();
 
-            // 3. Cek Role User & Redirect
+            // 4. Cek Role User & Redirect
             $user = Auth::user();
             
             if ($user->role === 'admin') {
@@ -55,7 +64,7 @@ class Login extends Component
             }
         }
 
-        // 4. Jika Gagal
-        session()->flash('error', 'Email atau password salah.');
+        // 5. Jika Gagal (Berarti Password Salah)
+        session()->flash('error', 'Password yang Anda masukkan salah.');
     }
 }

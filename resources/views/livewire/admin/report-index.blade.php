@@ -163,7 +163,6 @@
                             </div>
                         </div>
                         
-                        {{-- TAMBAHKAN wire:ignore DI SINI --}}
                         {{-- Ini mencegah Livewire mereset canvas saat tombol export diklik --}}
                         <div class="card-body pt-0" wire:ignore>
                             <canvas id="revenueChart" style="height: 350px;"></canvas>
@@ -199,6 +198,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+        // Toggle Sidebar Logic
         document.getElementById('sidebarToggleBtn')?.addEventListener('click', () => {
             document.body.classList.toggle('sidebar-toggled');
         });
@@ -208,12 +208,22 @@
 
         document.addEventListener('livewire:initialized', () => {
             
+            // Ambil data dari Controller ReportIndex.php
             const labels = {!! $chartLabels !!};
             const revenueData = {!! $chartRevenue !!};
             const orderData = {!! $chartOrders !!};
 
-            // Chart Pendapatan (Bar dengan Rounded Top)
+            // ---------------------------------------------
+            // 1. CHART PENDAPATAN (Revenue)
+            // ID di halaman ini adalah 'revenueChart'
+            // ---------------------------------------------
             const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+            
+            // Cari nilai tertinggi pendapatan
+            const maxRevenue = Math.max(...revenueData);
+            // [FIX] Batas minimal 1 Juta
+            const suggestedMaxRevenue = maxRevenue > 0 ? maxRevenue * 1.2 : 1000000; 
+
             new Chart(ctxRevenue, {
                 type: 'bar',
                 data: {
@@ -222,9 +232,8 @@
                         label: 'Pendapatan (Rp)',
                         data: revenueData,
                         backgroundColor: '#198754',
-                        borderRadius: 8, // Bar Chart melengkung
-                        borderSkipped: false, // Melengkung di semua sisi (opsional)
-                        barThickness: 25
+                        borderRadius: 6,
+                        barThickness: 30, 
                     }]
                 },
                 options: {
@@ -235,7 +244,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return 'Rp ' + context.raw.toLocaleString('id-ID');
+                                    return 'Rp ' + new Intl.NumberFormat('id-ID').format(context.raw);
                                 }
                             }
                         }
@@ -243,25 +252,37 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            grid: { borderDash: [2, 4], color: '#f0f0f0' }, // Grid putus-putus halus
+                            suggestedMax: suggestedMaxRevenue, // [FIX] Agar tidak menjolak
+                            grid: { borderDash: [2, 4], color: '#f0f0f0' },
                             ticks: {
-                                callback: function(value) { return 'Rp ' + value.toLocaleString('id-ID'); },
+                                callback: function(value) { 
+                                    // [FIX] Format Jt/Rb
+                                    if (value >= 1000000) return 'Rp ' + (value/1000000) + ' Jt';
+                                    if (value >= 1000) return 'Rp ' + (value/1000) + ' Rb';
+                                    return 'Rp ' + value; 
+                                },
                                 font: { size: 11 }
                             }
                         },
-                        x: {
-                            grid: { display: false }
-                        }
+                        x: { grid: { display: false } }
                     }
                 }
             });
 
-            // Chart Order (Line Smooth)
+            // ---------------------------------------------
+            // 2. CHART TREN ORDER (Jumlah Order)
+            // ID di halaman ini adalah 'orderChart'
+            // ---------------------------------------------
             const ctxOrder = document.getElementById('orderChart').getContext('2d');
             
-            // Buat Gradient untuk Line Chart
-            let gradient = ctxOrder.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(13, 110, 253, 0.3)');
+            // Cari nilai tertinggi order
+            const maxOrder = Math.max(...orderData);
+            // [FIX] Batas minimal 10
+            const suggestedMaxOrder = maxOrder > 10 ? maxOrder + 5 : 10;
+
+            // Buat Gradient Biru Halus
+            let gradient = ctxOrder.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(13, 110, 253, 0.2)');
             gradient.addColorStop(1, 'rgba(13, 110, 253, 0)');
 
             new Chart(ctxOrder, {
@@ -272,14 +293,14 @@
                         label: 'Jumlah Order',
                         data: orderData,
                         borderColor: '#0d6efd',
-                        backgroundColor: gradient, // Pakai gradient
+                        backgroundColor: gradient,
                         borderWidth: 2,
-                        tension: 0.4, // Melengkung halus (smooth curve)
+                        tension: 0.3, 
                         fill: true,
                         pointBackgroundColor: '#fff',
                         pointBorderColor: '#0d6efd',
-                        pointRadius: 4,
-                        pointHoverRadius: 6
+                        pointRadius: 5,
+                        pointHoverRadius: 7
                     }]
                 },
                 options: {
@@ -289,8 +310,9 @@
                     scales: {
                         y: {
                             beginAtZero: true,
+                            suggestedMax: suggestedMaxOrder, // [FIX] Agar tidak menjolak
                             grid: { borderDash: [2, 4], color: '#f0f0f0' },
-                            ticks: { stepSize: 1 }
+                            ticks: { stepSize: 1 } 
                         },
                         x: { grid: { display: false } }
                     }

@@ -105,7 +105,6 @@
                                                 Detail
                                             </button>
 
-                                            {{-- Tombol Bayar (Muncul Otomatis saat Admin Input Harga) --}}
                                             @if($order->status == 'MENUNGGU_PEMBAYARAN' && !$order->payment_proof)
                                                 <button class="btn btn-sm btn-danger" 
                                                         wire:click="openPaymentModal({{ $order->id }})"
@@ -334,12 +333,32 @@
                                                 @if($isActive)
                                                     @if($statusLabel == 'MENUNGGU_DIJEMPUT')
                                                         <small class="text-muted d-block" style="font-size: 0.75rem;">Order masuk ke sistem</small>
+
+                                                    <!-- BAGIAN SINI JUGA -->
                                                     @elseif($statusLabel == 'DRIVER_OTW' && $selectedOrder->pickupDriver)
-                                                        <small class="text-muted d-block" style="font-size: 0.75rem;">Driver: {{ $selectedOrder->pickupDriver->name }}</small>
+                                                        <small class="text-muted d-block" style="font-size: 0.75rem;">
+                                                            Driver: <strong>{{ $selectedOrder->pickupDriver->name }}</strong>
+                                                        </small>
+                                                        <small class="text-success d-block fw-bold" style="font-size: 0.75rem;">
+                                                            <i class="bi bi-whatsapp"></i> 
+                                                            <a href="https://wa.me/{{ $selectedOrder->pickupDriver->phone }}" target="_blank" class="text-success text-decoration-none">
+                                                                {{ $selectedOrder->pickupDriver->phone }}
+                                                            </a>
+                                                        </small>
                                                     @elseif($statusLabel == 'MENUNGGU_PEMBAYARAN' && $selectedOrder->is_paid)
                                                         <small class="text-success d-block fw-bold" style="font-size: 0.75rem;">Lunas & Terverifikasi</small>
+
+                                                    <!-- BAGIAN SINI -->
                                                     @elseif($statusLabel == 'DIKIRIM' && $selectedOrder->deliveryDriver)
-                                                        <small class="text-muted d-block" style="font-size: 0.75rem;">Driver: {{ $selectedOrder->deliveryDriver->name }}</small>
+                                                        <small class="text-muted d-block" style="font-size: 0.75rem;">
+                                                                Driver: <strong>{{ $selectedOrder->deliveryDriver->name }}</strong>
+                                                        </small>
+                                                        <small class="text-success d-block fw-bold" style="font-size: 0.75rem;">
+                                                                <i class="bi bi-whatsapp"></i> 
+                                                                <a href="https://wa.me/{{ $selectedOrder->deliveryDriver->phone }}" target="_blank" class="text-success text-decoration-none">
+                                                                    {{ $selectedOrder->deliveryDriver->phone }}
+                                                                </a>
+                                                        </small>
                                                     @endif
                                                 @endif
                                             </div>

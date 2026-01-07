@@ -31,7 +31,7 @@ class Order extends Model
 
     // ubah tipe data secara otomatis saat diambil dari database
     protected $casts = [
-        'pickup_schedule' => 'datetime', // biar enak format tanggalnya nanti
+        'pickup_schedule' => 'datetime',
         'total_weight' => 'float',
         'total_price' => 'decimal:2',
         'is_paid' => 'boolean',

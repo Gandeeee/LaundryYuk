@@ -1,7 +1,6 @@
 <div>
     {{-- 1. Push CSS & Font Awesome --}}
     @push('styles')
-        {{-- Menggunakan FontAwesome 6 (CDN Stabil) --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link href="{{ asset('assets/css/landing.css') }}" rel="stylesheet">
         {{-- Google Fonts: Poppins --}}
@@ -175,10 +174,8 @@
                 <div class="col-md-4">
                     <div class="card service-card h-100 border-0 shadow-sm rounded-4 p-3">
                         <div class="card-body text-center">
-                            {{-- SOLUSI: Ganti style background jadi Putih + Border Merah agar Ikon Merah terlihat --}}
                             <div class="icon-circle bg-white text-danger border border-2 border-danger rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" 
                                  style="width: 80px; height: 80px; font-size: 2rem;">
-                                {{-- Gunakan fa-tshirt (versi umum) --}}
                                 <i class="fa-solid fa-spray-can-sparkles"></i>
                             </div>
                             <h4 class="fw-bold mb-3">Cuci Komplit</h4>
@@ -187,8 +184,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- Card 2: EXPRESS (Ini sudah jalan, jangan diubah warnanya) --}}
                 <div class="col-md-4">
                     <div class="card service-card h-100 border-0 shadow rounded-4 p-3 position-relative overflow-hidden">
                         <div class="position-absolute top-0 end-0 bg-warning text-dark fw-bold px-3 py-1 rounded-bottom-start small">POPULER</div>
@@ -208,7 +203,6 @@
                 <div class="col-md-4">
                     <div class="card service-card h-100 border-0 shadow-sm rounded-4 p-3">
                         <div class="card-body text-center">
-                            {{-- SOLUSI: Samakan style dengan Card 1 (Putih + Border) --}}
                             <div class="icon-circle bg-white text-danger border border-2 border-danger rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" 
                                  style="width: 80px; height: 80px; font-size: 2rem;">
                                 <i class="fa-solid fa-socks"></i>
@@ -316,7 +310,8 @@
                     <h5 class="fw-bold mb-3">Hubungi Kami</h5>
                     <ul class="list-unstyled text-secondary small">
                         <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-danger"></i> Jl. Raya Jetis Kulon I No.66B, Wonokromo, Kec. Wonokromo, Surabaya</li>
-                        <li class="mb-2"><i class="fas fa-whatsapp me-2 text-danger"></i> 0899-7990-809</li>
+                        <li class="mb-2"><i class="fas fa-whatsapp me-2 text-danger"></i> 
+                        0899-7990-809</li>
                         <li class="mb-2"><i class="fas fa-regular fa-clock me-2 text-danger"></i> 08.00 WIB - 22.00 WIB</li>
                     </ul>
                 </div>

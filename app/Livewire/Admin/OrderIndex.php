@@ -49,7 +49,6 @@ class OrderIndex extends Component
         'Cuci Setrika Express 1 Jam' => 10000,
         'Setrika Saja' => 5000,
         'Kering Saja' => 4000,
-        
         // Layanan Satuan (Harga fix/estimasi terendah)
         'Satuan Bedcover' => 25000,
         'Satuan Sprei' => 10000,
@@ -244,6 +243,30 @@ class OrderIndex extends Component
 
         session()->flash('success', 'Pembayaran DITERIMA. Order masuk proses pencucian.');
         $this->dispatch('close-modal');
+    }
+
+    // --- FITUR BARU: TOLAK PEMBAYARAN ---
+    public function rejectPayment()
+    {
+        $order = Order::find($this->selectedOrderId);
+        
+        if ($order && $order->payment_proof) {
+            // 1. Hapus File Fisik di Storage agar hemat penyimpanan
+            if (Storage::disk('public')->exists($order->payment_proof)) {
+                Storage::disk('public')->delete($order->payment_proof);
+            }
+
+            // 2. Reset Data di Database
+            // payment_proof jadi NULL -> Customer otomatis disuruh upload lagi
+            $order->update([
+                'payment_proof' => null,
+                'is_verified' => false,
+                // Kita tidak ubah status (tetap MENUNGGU_PEMBAYARAN)
+            ]);
+
+            session()->flash('success', 'Bukti pembayaran berhasil DITOLAK. File dihapus & Customer diminta upload ulang.');
+            $this->dispatch('close-modal');
+        }
     }
 
     public function openVerifyModal($orderId)

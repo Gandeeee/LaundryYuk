@@ -24,8 +24,6 @@ class OrderCreate extends Component
     {
         return view('livewire.customer.order-create');
     }
-
-    // --- INI FUNGSI YANG HILANG/ERROR SEBELUMNYA ---
     
     public function store()
     {

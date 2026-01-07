@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm transition-all" 
      style="background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px);" 
-     wire:poll.10s>
+     wire:poll.5s>
     
     <div class="container">
         {{-- 1. LOGO & BRAND (Merah) --}}
@@ -80,16 +80,38 @@
                                     <li>
                                         <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 hover-bg-light" href="{{ route('customer.dashboard') }}">
                                             <div class="shrink-0">
-                                                @if($notif->status == 'MENUNGGU_PEMBAYARAN') <i class="bi bi-wallet2 text-warning fs-5"></i>
-                                                @elseif(in_array($notif->status, ['SELESAI_DICUCI', 'TIBA'])) <i class="bi bi-check-circle text-success fs-5"></i>
-                                                @else <i class="bi bi-info-circle text-primary fs-5"></i> @endif
+                                                @if($notif->status == 'MENUNGGU_PEMBAYARAN') 
+                                                    {{-- Jika belum upload/ditolak, warna MERAH biar waspada --}}
+                                                    <i class="bi bi-exclamation-circle-fill text-danger fs-5"></i>
+                                                @elseif(in_array($notif->status, ['SELESAI_DICUCI', 'TIBA'])) 
+                                                    <i class="bi bi-check-circle text-success fs-5"></i>
+                                                @else 
+                                                    <i class="bi bi-info-circle text-primary fs-5"></i> 
+                                                @endif
                                             </div>
                                             <div class="w-100">
                                                 <div class="d-flex justify-content-between mb-1">
                                                     <small class="fw-bold text-dark">#LD-{{ $notif->id }}</small>
                                                     <small class="text-muted" style="font-size: 0.65rem;">{{ $notif->updated_at->diffForHumans() }}</small>
                                                 </div>
-                                                <p class="mb-0 small text-secondary lh-sm">{{ str_replace('_', ' ', $notif->status) }}</p>
+                                                {{--PESAN NOTIFIKASI LEBIH JELAS --}}
+                                                @if($notif->status == 'MENUNGGU_PEMBAYARAN')
+                                                    @if(!$notif->payment_proof)
+                                                        {{-- Pesan Khusus Jika Bukti Kosong (Baru / Ditolak) --}}
+                                                        <p class="mb-0 small text-danger fw-bold lh-sm">
+                                                            Tagihan Belum Dibayar / Ditolak. <br>Silakan Upload Bukti.
+                                                        </p>
+                                                    @else
+                                                        <p class="mb-0 small text-warning fw-bold lh-sm">
+                                                            Sedang diverifikasi Admin...
+                                                        </p>
+                                                    @endif
+                                                @else
+                                                    {{-- Status Lainnya Normal --}}
+                                                    <p class="mb-0 small text-secondary lh-sm">
+                                                        {{ str_replace('_', ' ', $notif->status) }}
+                                                    </p>
+                                                @endif
                                             </div>
                                         </a>
                                     </li>
