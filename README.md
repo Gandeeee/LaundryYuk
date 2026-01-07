@@ -1,59 +1,197 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🧺 Laundry Yuk! - Modern Laundry Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Project Status](https://img.shields.io/badge/Status-Fully%20Functional-success?style=for-the-badge)
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Livewire](https://img.shields.io/badge/Livewire-4E56A0?style=for-the-badge&logo=livewire&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 
-## About Laravel
+**Aplikasi manajemen laundry berbasis web** yang dirancang untuk efisiensi operasional dan kemudahan pelanggan. Project ini dikembangkan untuk memenuhi Tugas Besar Sistem Informasi **Telkom University**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tech Stack & Tools
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Aplikasi ini dibangun menggunakan teknologi terkini untuk menjamin performa, keamanan, dan skalabilitas:
 
-## Learning Laravel
+| Kategori | Teknologi | Deskripsi |
+| :--- | :--- | :--- |
+| **Framework** | ![Laravel 11](https://img.shields.io/badge/Laravel_11-FF2D20?style=flat-square&logo=laravel&logoColor=white) | Core Backend Framework |
+| **Fullstack** | ![Livewire 3](https://img.shields.io/badge/Livewire_3-4E56A0?style=flat-square&logo=livewire&logoColor=white) | Reactive Frontend Components |
+| **Styling** | ![Bootstrap 5](https://img.shields.io/badge/Bootstrap_5-7952B3?style=flat-square&logo=bootstrap&logoColor=white) | Responsive UI Design |
+| **Database** | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white) | Relational Database Management |
+| **Language** | ![PHP 8.2+](https://img.shields.io/badge/PHP_8.2+-777BB4?style=flat-square&logo=php&logoColor=white) | Server-side Language |
+| **Asset** | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white) | Frontend Tooling |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Fitur Unggulan (Project Status)
 
-## Laravel Sponsors
+Backend saat ini berstatus **100% Fully Functional** dengan fitur mencakup:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 👤 Customer Features
+- [x] **Order Booking:** Form pemesanan laundry yang mudah dengan estimasi harga.
+- [x] **Real-time Tracking:** Pantau status cucian (Dijemput -> Dicuci -> Diantar).
+- [x] **History Transaksi:** Riwayat pesanan lengkap dengan detail.
+- [x] **Rating & Review:** Memberikan ulasan layanan setelah selesai.
 
-### Premium Partners
+### 🛡️ Admin & Operasional
+- [x] **Dashboard Monitoring:** Grafik ringkasan order harian/bulanan.
+- [x] **Management Order (CRUD):** Update status laundry (Proses/Selesai).
+- [x] **Driver Assignment:** Penugasan kurir untuk antar-jemput.
+- [x] **Laporan Keuangan:** Rekapitulasi pendapatan otomatis.
+- [x] **Cetak Nota (Thermal Ready):** [BARU] Invoice format struk kasir.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 💻 Cara Install & Menjalankan (Local Development)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ikuti langkah-langkah berikut untuk menjalankan project di komputer lokal Anda:
 
-## Code of Conduct
+### 1. Clone Repository
+```bash
+git clone [https://github.com/Gandeeee/LaundryYuk.git](https://github.com/Gandeeee/LaundryYuk.git)
+cd LaundryYuk
+````
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2\. Install Dependencies
 
-## Security Vulnerabilities
+Pastikan Composer dan NPM sudah terinstall di laptop Anda.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+composer install
+npm install
+```
 
-## License
+### 3\. Konfigurasi Environment
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Salin file `.env` dan generate application key.
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+> **Penting:** Buka file `.env` lalu sesuaikan `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` dengan konfigurasi MySQL lokal Anda.
+
+### 4\. Setup Database
+
+Buat database baru di MySQL (misal: `laundry_yuk_db`), lalu jalankan migrasi & seeder:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+*(Perintah ini akan mengisi database dengan data dummy untuk testing)*
+
+### 5\. Jalankan Aplikasi
+
+Buka dua terminal terpisah untuk menjalankan server Backend dan Frontend asset:
+
+**Terminal 1 (Backend):**
+
+```bash
+php artisan serve
+```
+
+
+Akses aplikasi di browser: `http://127.0.0.1:8000`
+
+-----
+
+## 🔑 Akun Demo (Default)
+
+Gunakan akun berikut untuk masuk ke sistem setelah melakukan seeding:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Administrator** | `admin@gmail.com` | `12345678` |
+| **Customer** | `user@gmail.com` | `12345678` |
+
+-----
+
+## PEMBAGIAN TUGAS 
+# Laundry Yuk! – Daftar Fitur Sistem
+
+Dokumen ini berisi daftar fitur utama yang dikembangkan pada aplikasi **Laundry Yuk!**, beserta deskripsi singkat dan penanggung jawab (PIC) masing-masing fitur.
+
+---
+
+## 1. AUTH
+Mengelola seluruh proses akun pengguna, meliputi pendaftaran akun baru, proses login dan logout, autentikasi, serta otorisasi berbasis peran (Customer dan Admin). Fitur ini juga mencakup pengamanan kredensial pengguna untuk menjaga keamanan data akun.
+
+**PIC:** Adis
+
+---
+
+## 2. CUSTOMER ORDER
+Menyediakan fitur bagi pengguna untuk melakukan pemesanan layanan laundry. Pengguna dapat memilih jenis layanan, menentukan lokasi penjemputan, memilih tanggal penjemputan, serta menentukan jam penjemputan sesuai kebutuhan.
+
+**PIC:** Adis
+
+---
+
+## 3. ORDER ADMIN
+Mengelola proses pemesanan dari sisi admin, termasuk manajemen data order, pembaruan status pesanan, serta memastikan data pengiriman terintegrasi dengan data pesanan yang dibuat oleh pengguna.
+
+**PIC:** Krisna
+
+---
+
+## 4. DASHBOARD ADMIN
+Menyediakan dashboard admin yang interaktif dan ringkas, berisi ringkasan data penting yang berasal dari modul order admin dan laporan admin untuk memudahkan pemantauan operasional.
+
+**PIC:** Krisna
+
+---
+
+## 5. PAYMENT INTEGRATION
+Mengelola alur pembayaran antara admin dan pengguna, melakukan sinkronisasi data pembayaran, memvalidasi status pembayaran (belum upload bukti, menunggu verifikasi, atau sudah terverifikasi), serta menyimpan riwayat transaksi pembayaran secara terstruktur.
+
+**PIC:** Gandhi
+
+---
+
+## 6. NOTIFICATION INTEGRATION
+Menyediakan sistem notifikasi otomatis antara pengguna dan admin terkait pembaruan status pesanan secara real time dengan memanfaatkan Livewire.
+
+**PIC:** Gandhi
+
+---
+
+## 7. RATING & RIWAYAT ORDER
+Menyediakan fitur ulasan dan penilaian dari pelanggan terhadap layanan laundry yang diberikan, mengelola data rating, serta menampilkan riwayat pemesanan bagi customer.
+
+**PIC:** Zaki
+
+---
+
+## 8. DRIVER MANAGEMENT
+Mengelola data driver yang mencakup proses penambahan, pembaruan, dan penghapusan data driver, serta memastikan data driver terhubung dengan status order yang sedang berjalan.
+
+**PIC:** Zaki
+
+---
+
+## 9. INVOICE EXPORT
+Menyediakan fitur ekspor invoice untuk setiap transaksi, memastikan tampilan dan fungsi modal invoice berjalan dengan baik, serta terintegrasi dengan peran admin dan customer.
+
+**PIC:** Gandhi
+
+---
+
+## 10. BUSINESS REPORT
+Menyediakan fitur pengelolaan laporan penjualan dan memastikan data laporan dapat diekspor dalam format CSV untuk kebutuhan analisis dan dokumentasi.
+
+**PIC:** Adis
+
+---
+
+## 11. LANDING PAGE
+Menyediakan halaman landing page sebagai halaman awal aplikasi untuk menyambut pengguna sebelum melakukan proses login atau registrasi.
+
+**PIC:** Krisna
+
+
+-----
+
